@@ -7,7 +7,7 @@ export default function Layout({
 }>) {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
     </>
   );

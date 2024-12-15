@@ -9,12 +9,12 @@ import "./Header.scss";
 export const Header = async () => {
   const session = await auth();
 
-  const loginAction = async () => {
+  const triggerLogin = async () => {
     "use server";
     await signIn("github");
   };
 
-  const logoutAction = async () => {
+  const triggerLogout = async () => {
     "use server";
     await signOut({ redirectTo: "/" });
   };
@@ -41,7 +41,7 @@ export const Header = async () => {
                 className="header__link"
                 dangerouslySetInnerHTML={{ __html: Icons.SquarePlus }}
               />
-              <form action={logoutAction} className="header__link">
+              <form action={triggerLogout} className="header__link">
                 <button dangerouslySetInnerHTML={{ __html: Icons.Logout }} />
               </form>
               <Link href={`/user/${session?.id}`} className="header__avatar">
@@ -50,9 +50,11 @@ export const Header = async () => {
               </Link>
             </>
           ) : (
-            <form action={loginAction} className="header__link">
-              <button dangerouslySetInnerHTML={{ __html: Icons.Login }} />
-            </form>
+            <>
+              <form action={triggerLogin} className="header__link">
+                <button dangerouslySetInnerHTML={{ __html: Icons.Login }} />
+              </form>
+            </>
           )}
         </div>
       </nav>

@@ -55,8 +55,9 @@ const workSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "YC Directory",
-  description: "Pitch, Vote and Grow",
+  title: "TwoGether",
+  description:
+    "Celebrate your love story with TwoGether! Seamlessly track, rate, and relive your favorite date spots while discovering new adventures to cherish. From cozy cafes to scenic getaways, create a shared journey of unforgettable memories. Two hearts, one app, countless moments to treasure.",
 };
 
 export default function RootLayout({

@@ -2,8 +2,9 @@
 @import "../../styles/mixins";
 
 .header {
+  @include thinShadow;
   align-items: center;
-  background-color: $white-cream;
+  background: $gradient-black;
   display: flex;
   height: 64px;
   padding: 12px 0;
@@ -19,17 +20,23 @@
 
   &__logo {
     align-items: center;
-    background-color: #6256ca;
-    border-radius: 50%;
+    color: $secondary-color;
+    background-color: $primary-color;
+    border-radius: 6px;
     display: flex;
-    height: 36px;
+    height: 42px;
     justify-content: center;
-    padding: 3px;
-    width: 36px;
+    transition: all 150ms ease-in-out;
+    width: 42px;
 
     svg {
       height: 30px;
       width: 30px;
+    }
+
+    &:hover {
+      background-color: $secondary-color;
+      color: $primary-color;
     }
   }
 
@@ -40,29 +47,48 @@
     gap: 10px;
   }
 
-  &__link,
-  &__link button {
+  &__link {
+    @include thinnerShadow;
     align-items: center;
-    color: #6256ca;
+    background-color: $primary-color;
+    border-radius: 6px;
     display: flex;
     height: 36px;
     justify-content: center;
     padding: 3px;
+    transition: all 150ms ease-in-out;
     width: 36px;
 
     svg {
+      color: $secondary-color;
       height: 30px;
       width: 30px;
     }
+
+    &:hover {
+      background-color: $secondary-color;
+
+      svg {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &__link {
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
 
   &__avatar {
-    background-color: #6256ca;
-    border-radius: 50%;
-    height: 36px;
+    background-color: $primary-color;
+    border: 3px solid $primary-color;
+    border-radius: 6px;
+    height: calc(42px - 3px * 2);
     overflow: hidden;
     position: relative;
-    width: 36px;
+    width: calc(42px - 3px * 2);
+    transition: all 150ms ease-in-out;
 
     img {
       position: relative;
@@ -80,6 +106,10 @@
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      border: 3px solid $secondary-color;
     }
   }
 }
