@@ -4,20 +4,17 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import MDEditor from "@uiw/react-md-editor";
 
-import { useToast } from "@/hooks/use-toast";
 import { createPitch } from "@/lib/actions";
 import { formSchema } from "@/lib/validation";
 import { z } from "zod";
 
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { Button } from "./ui/button";
 import { Send } from "lucide-react";
 
 const StartupForm = () => {
   const [errors, setErrors] = React.useState<Record<string, string>>({});
   const [pitch, setPitch] = React.useState("");
-  const { toast } = useToast();
+  // TODO: @HOOKS
+  // const { toast } = useToast();
   const router = useRouter();
 
   const handleFormSubmit = async (
@@ -40,10 +37,11 @@ const StartupForm = () => {
       const result = await createPitch(prevState, formData, pitch);
 
       if (result.status === "SUCCESS") {
-        toast({
-          title: "Success",
-          description: "Your startup pitch has been created successfully!",
-        });
+        // TODO: @HOOKS
+        // toast({
+        //   title: "Success",
+        //   description: "Your startup pitch has been created successfully!",
+        // });
 
         router.push(`/startup/${result._id}`);
       }
@@ -55,20 +53,22 @@ const StartupForm = () => {
 
         setErrors(fieldErrors as unknown as Record<string, string>);
 
-        toast({
-          title: "Error",
-          description: "Please check your inputs and try again",
-          variant: "destructive",
-        });
+        // TODO: @HOOKS
+        // toast({
+        //   title: "Error",
+        //   description: "Please check your inputs and try again",
+        //   variant: "destructive",
+        // });
 
         return { ...prevState, error: "Validation failed", status: "ERROR" };
       }
 
-      toast({
-        title: "Error",
-        description: "An unexpected error has occurred",
-        variant: "destructive",
-      });
+      // TODO: @HOOKS
+      // toast({
+      //   title: "Error",
+      //   description: "An unexpected error has occurred",
+      //   variant: "destructive",
+      // });
 
       return {
         ...prevState,
@@ -90,7 +90,8 @@ const StartupForm = () => {
         <label htmlFor="title" className="startup-form_label">
           Title
         </label>
-        <Input
+        {/* TODO: @COMPONENT */}
+        <input
           id="title"
           name="title"
           placeholder="Startup Title"
@@ -103,7 +104,8 @@ const StartupForm = () => {
         <label htmlFor="description" className="startup-form_label">
           Description
         </label>
-        <Textarea
+        {/* TODO: @COMPONENT */}
+        <textarea
           id="description"
           name="description"
           placeholder="Startup Description"
@@ -118,7 +120,8 @@ const StartupForm = () => {
         <label htmlFor="category" className="startup-form_label">
           Category
         </label>
-        <Input
+        {/* TODO: @COMPONENT */}
+        <input
           id="category"
           name="category"
           placeholder="Startup Category (Tech, Health, Education ... )"
@@ -133,7 +136,8 @@ const StartupForm = () => {
         <label htmlFor="link" className="startup-form_label">
           Image URL
         </label>
-        <Input
+        {/* TODO: @COMPONENT */}
+        <input
           id="link"
           name="link"
           placeholder="Startup Image URL"
@@ -165,14 +169,15 @@ const StartupForm = () => {
         {errors.pitch && <p className="startup-form_error">{errors.pitch}</p>}
       </div>
 
-      <Button
+      {/* TODO: @COMPONENT */}
+      <button
         type="submit"
         className="startup-form_btn text-white"
         disabled={isPending}
       >
         {isPending ? "Submitting..." : "Submit your startup"}
         <Send className="size-6 ml-2" />
-      </Button>
+      </button>
     </form>
   );
 };

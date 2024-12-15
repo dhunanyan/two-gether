@@ -1,0 +1,85 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.header {
+  align-items: center;
+  background-color: $white-cream;
+  display: flex;
+  height: 64px;
+  padding: 12px 0;
+
+  &__nav {
+    @include container;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  &__logo {
+    align-items: center;
+    background-color: #6256ca;
+    border-radius: 50%;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    padding: 3px;
+    width: 36px;
+
+    svg {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  &__links {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  &__link,
+  &__link button {
+    align-items: center;
+    color: #6256ca;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    padding: 3px;
+    width: 36px;
+
+    svg {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  &__avatar {
+    background-color: #6256ca;
+    border-radius: 50%;
+    height: 36px;
+    overflow: hidden;
+    position: relative;
+    width: 36px;
+
+    img {
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+
+    > span {
+      color: $secondary-color;
+      font-size: 16px;
+      font-weight: 700;
+      left: 50%;
+      letter-spacing: 1px;
+      line-height: 16px;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

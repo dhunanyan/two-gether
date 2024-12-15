@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import { Header } from "@/components";
 
 export default function Layout({
   children,
@@ -6,9 +6,9 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="font-work-sans">
-      <Navbar />
-      {children}
-    </main>
+    <>
+      <Header />
+      <main>{children}</main>
+    </>
   );
 }

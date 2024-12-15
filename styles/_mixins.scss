@@ -1,0 +1,355 @@
+@import "./variables.scss";
+
+@mixin regularShadow {
+  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.47);
+}
+
+@mixin lightShadow {
+  box-shadow: 0px 3px 16px -4px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 0px 3px 16px -4px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 0px 3px 16px -4px rgba(0, 0, 0, 0.47);
+}
+
+@mixin thinShadow {
+  box-shadow: 0px 2px 22px -6px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 0px 2px 22px -6px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 0px 2px 22px -6px rgba(0, 0, 0, 0.47);
+}
+
+@mixin thinnerShadow {
+  box-shadow: 3px -4px 18px -10px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 3px 4px 18px -10px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 3px -4px 18px -10px rgba(0, 0, 0, 0.47);
+}
+
+@mixin thinnerRightShadow {
+  box-shadow: 4px 10px 18px -10px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: 4px 10px 18px -10px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 4px 10px 18px -10px rgba(0, 0, 0, 0.47);
+}
+
+@mixin zeroShadow {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+@mixin container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  transition: all 150ms linear;
+  width: calc(100% - 10px * 2);
+
+  @media screen and (min-width: 425px) {
+    padding: 30px 15px;
+    width: calc(100% - 15px * 2);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 60px 30px;
+    width: calc(100% - 30px * 2);
+  }
+}
+
+@mixin button {
+  @include lightShadow;
+  align-items: center;
+  border: 0;
+  border-radius: 90px;
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: flex-start;
+  line-height: 28px;
+  padding: 16px 32px;
+  text-align: center;
+  transition: all 150ms ease-out;
+
+  &::after {
+    content: "➜";
+    opacity: 0;
+    transition:
+      all 150ms ease-out,
+      opacity 200ms ease-out;
+    width: 0;
+  }
+
+  &:hover {
+    transform: translate(-4px, 0);
+    padding: 16px 16px 16px 32px;
+
+    &::after {
+      content: "➜";
+      opacity: 1;
+      padding: 0 0 0 8px;
+      width: 16px;
+    }
+  }
+}
+
+@mixin buttonBlue {
+  @include button;
+  background-color: $blue-color;
+  color: $white-color;
+
+  &:hover {
+    background-color: $black-color;
+    color: $yellow-color;
+  }
+}
+
+@mixin buttonYellow {
+  @include button;
+  background-color: $yellow-color;
+  color: $black-color;
+
+  &:hover {
+    background-color: $black-color;
+    color: $yellow-color;
+
+    svg path {
+      fill: $yellow-color;
+    }
+  }
+}
+
+@mixin buttonBlack {
+  @include button;
+  background-color: $black-color-alt;
+  color: $white-color;
+
+  &:hover {
+    background-color: $white-color;
+    color: $black-color-alt;
+  }
+}
+
+@mixin buttonWhite {
+  @include button;
+  background-color: $grey-color;
+  color: $black-color;
+
+  &:hover {
+    background-color: $white-color-alt;
+    color: $black-color;
+  }
+}
+
+@mixin animatedHighlight {
+  display: inline-flex;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+
+  > span {
+    padding: 0;
+    background: $yellow-color;
+    display: flex;
+    content: "";
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+@mixin titleSpoofTrial {
+  color: $black-color;
+  font-family: $font-work-sans;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 45px;
+  text-align: center;
+  transform: all 150ms ease-in-out;
+
+  span {
+    @include animatedHighlight;
+    border-radius: 22px;
+    padding: 0 10px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 90px;
+    line-height: 110px;
+  }
+}
+
+@mixin titleSpoofTrialSmall {
+  color: $black-color;
+  text-align: center;
+  font-family: $font-work-sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 34px;
+  transform: all 150ms ease-in-out;
+
+  @media screen and (min-width: 425px) {
+    font-size: 35px;
+    line-height: 40px;
+  }
+}
+
+@mixin subtitleSpoofTrialBig {
+  color: $black-color;
+  font-family: $font-work-sans;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: left;
+  transform: all 150ms ease-in-out;
+
+  span {
+    @include animatedHighlight;
+    border-radius: 12px;
+    padding: 0 5px;
+    line-height: 45px;
+
+    @media screen and (min-width: 768px) {
+      padding: 0 10px;
+      line-height: 66px;
+    }
+  }
+
+  @media screen and (min-width: 425px) {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 45px;
+    line-height: 50px;
+  }
+}
+
+@mixin subtitleSpoofTrial {
+  color: $black-color;
+  font-family: $font-work-sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 40px;
+  transform: all 150ms ease-in-out;
+}
+
+@mixin subtitleSpoofTrialSmall {
+  color: $black-color;
+  text-align: center;
+  font-family: $font-work-sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  transform: all 150ms ease-in-out;
+
+  @media screen and (min-width: 425px) {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+@mixin descriptionSpoofTrial {
+  color: $black-color;
+  font-family: $font-work-sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  transform: all 150ms ease-in-out;
+
+  @media screen and (min-width: 768px) {
+    line-height: 18px;
+    line-height: 28px;
+    text-align: left;
+  }
+}
+
+@mixin descriptionSpoofTrialVeryBig {
+  color: $black-color;
+  font-family: $font-work-sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  text-align: center;
+  transform: all 150ms ease-in-out;
+
+  @media screen and (min-width: 425px) {
+    font-size: 32px;
+    line-height: 45px;
+  }
+}
+
+@mixin titleInterSmall {
+  color: $black-color;
+  font-family: $font-inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  transform: all 150ms ease-in-out;
+}
+
+@mixin titleInter {
+  color: $black-color;
+  text-align: center;
+  font-family: $font-inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+  transform: all 150ms ease-in-out;
+}
+
+@mixin descriptionInter {
+  color: $black-color;
+  font-family: $font-inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  transform: all 150ms ease-in-out;
+}
+
+@mixin descriptionInterBig {
+  color: $black-color;
+  font-family: $font-inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  transform: all 150ms ease-in-out;
+}
+
+@mixin descriptionManropeSmall {
+  color: $black-color;
+  font-family: $font-manrope;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 10px;
+  transform: all 150ms ease-in-out;
+
+  @media screen and (min-width: 1064px) {
+    line-height: 16px;
+  }
+}
+
+@mixin descriptionManrope {
+  color: $black-color;
+  font-family: $font-manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  transform: all 150ms ease-in-out;
+}

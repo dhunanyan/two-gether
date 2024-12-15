@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-import { Skeleton } from "@/components/ui/skeleton";
 import View from "@/components/View";
 
 import { client } from "@/sanity/lib/client";
@@ -106,7 +105,9 @@ const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
           </div>
         )}
 
-        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+        <Suspense
+          fallback={/* TODO: @COMPONENT */ <div className="view_skeleton" />}
+        >
           <View id={post._id} />
         </Suspense>
       </section>

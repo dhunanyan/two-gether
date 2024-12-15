@@ -41,8 +41,7 @@ pitches, and gain exposure through a clean minimalistic design for a smooth user
 - React 19
 - Next.js 15
 - Sanity
-- TailwindCSS
-- ShadCN
+- Sass
 - TypeScript
 
 ## <a name="features">🔋 Features</a>
@@ -511,10 +510,6 @@ export default config;
 ```typescript
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 
 export function formatDate(date: string) {
   return new Date(date).toLocaleDateString("en-US", {
