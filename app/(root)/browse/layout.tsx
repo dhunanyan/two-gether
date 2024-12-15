@@ -1,4 +1,6 @@
-import { Header } from "@/components";
+import { Navbar } from "@/components";
+
+import "./layout.scss";
 
 export default function Layout({
   children,
@@ -7,8 +9,8 @@ export default function Layout({
 }>) {
   return (
     <>
-      {/* <Header /> */}
-      <main>{children}</main>
+      <main className="main">{children}</main>
+      <Navbar />
     </>
   );
 }

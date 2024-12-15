@@ -19,7 +19,7 @@ const User = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!user) return notFound();
 
   return (
-    <>
+    <main>
       <section className="profile_container">
         <div className="profile_card">
           <div className="profile_title">
@@ -52,7 +52,7 @@ const User = async ({ params }: { params: Promise<{ id: string }> }) => {
           </ul>
         </div>
       </section>
-    </>
+    </main>
   );
 };
 

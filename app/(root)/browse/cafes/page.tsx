@@ -1,11 +1,13 @@
 import { auth } from "@/auth";
-import SearchForm from "@/components/SearchForm";
+import { SearchForm } from "@/components";
 import StartupCard, { type StartupCardType } from "@/components/StartupCard";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { redirect } from "next/navigation";
 
-export default async function Browse({
+import "./page.scss";
+
+export default async function Cafes({
   searchParams,
 }: {
   searchParams: Promise<{ query: string }>;

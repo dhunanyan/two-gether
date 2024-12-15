@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.bottom-padding {
+  height: $bottom-padding;
+
+  @media screen and (min-width: 768px) {
+    height: 0px;
+  }
+}

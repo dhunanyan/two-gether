@@ -11,7 +11,7 @@ import "./Login.scss";
 export const Login = async () => {
   const session = await auth();
 
-  if (!!session) redirect("/browse");
+  if (!!session) redirect("/browse/cafes");
 
   const triggerLogin = async () => {
     "use server";
