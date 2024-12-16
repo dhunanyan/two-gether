@@ -2,6 +2,7 @@ import ArrowLeft from "../public/svg/i_ArrowLeft.svg";
 import Beef from "../public/svg/i_Beef.svg";
 import CirclePlus from "../public/svg/i_CirclePlus.svg";
 import Cup from "../public/svg/i_Cup.svg";
+import Filter from "../public/svg/i_Filter.svg";
 import GitHub from "../public/svg/i_GitHub.svg";
 import Home from "../public/svg/i_Home.svg";
 import Logo from "../public/svg/i_Logo.svg";
@@ -10,12 +11,14 @@ import Logout from "../public/svg/i_Logout.svg";
 import Restaurant from "../public/svg/i_Restaurant.svg";
 import Search from "../public/svg/i_Search.svg";
 import SquarePlus from "../public/svg/i_SquarePlus.svg";
+import Times from "../public/svg/i_Times.svg";
 
 export const Icons = {
   ArrowLeft,
   Beef,
   CirclePlus,
   Cup,
+  Filter,
   GitHub,
   Home,
   Logo,
@@ -24,4 +27,5 @@ export const Icons = {
   Restaurant,
   Search,
   SquarePlus,
+  Times,
 } as { [key: string]: string };

@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.browse {
+  &__container {
+    @include container;
+    padding-top: 80px !important;
+    position: relative;
+  }
+
+  &__title {
+    @include title;
+    color: $black-color;
+    text-align: left;
+  }
+
+  &__description {
+    @include description;
+    text-align: left;
+  }
+}

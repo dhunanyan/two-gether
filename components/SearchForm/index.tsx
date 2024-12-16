@@ -1,29 +1,64 @@
-import React from "react";
-import Form from "next/form";
+"use client";
 
-import { Reset } from "./Reset";
+import * as React from "react";
+import Form from "next/form";
+import { redirect, usePathname } from "next/navigation";
 
 import { Icons } from "@/config";
 
-export const SearchForm = ({ query }: { query: string }) => {
-  return (
-    <Form action="/" scroll={false} className="search-form">
-      <input
-        type="text"
-        name="query"
-        defaultValue={query}
-        placeholder="Search Cafes"
-        className="search-form__input"
-      />
+import "./SearchForm.scss";
 
-      <div className="flex gap-2">
-        {query && <Reset />}
+export const SearchForm = ({ query }: { query: string }) => {
+  const pathname = usePathname();
+  const ref = React.useRef<HTMLInputElement | null>(null);
+
+  const reset = () => {
+    const form = document.querySelector(".search-form") as HTMLFormElement;
+
+    if (form) form.reset();
+
+    redirect(pathname);
+  };
+
+  const handleFormClick = () => {
+    if (!ref.current) return;
+
+    ref.current.focus();
+  };
+
+  return (
+    <div className="search">
+      <Form
+        action={pathname}
+        scroll={false}
+        onClick={handleFormClick}
+        className="search__form"
+      >
+        <button
+          type="reset"
+          onClick={reset}
+          dangerouslySetInnerHTML={{ __html: Icons.Times }}
+        />
+        <input
+          ref={ref}
+          type="text"
+          name="query"
+          defaultValue={query}
+          placeholder="Search Cafes"
+          autoComplete="off"
+          className="search__input"
+        />
         <button
           type="submit"
-          className="search-btn text-white"
           dangerouslySetInnerHTML={{ __html: Icons.Search }}
         />
-      </div>
-    </Form>
+        {/* {query && <Reset />} */}
+      </Form>
+
+      <button
+        dangerouslySetInnerHTML={{ __html: Icons.Filter }}
+        className="search__filter"
+      />
+    </div>
   );
 };

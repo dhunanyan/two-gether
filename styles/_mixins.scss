@@ -146,6 +146,17 @@
   letter-spacing: 0.16px;
 }
 
+@mixin titleSmall {
+  color: $white-color;
+  text-align: center;
+  font-family: $font-work-sans;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 0.16px;
+}
+
 @mixin description {
   color: $grey-color-darker;
   text-align: center;

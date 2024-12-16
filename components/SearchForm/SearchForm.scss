@@ -1,5 +1,47 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-.search-form {
+.search {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  width: 100%;
+
+  &__form {
+    align-items: center;
+    background-color: $black-alt-color;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    padding: 16px;
+    width: calc(100% - 16px * 2);
+
+    button {
+      align-items: center;
+      color: $grey-color-darker;
+      display: flex;
+      justify-content: center;
+      transition: all 150ms ease-in-out;
+
+      &:hover {
+        color: $white-color;
+      }
+    }
+  }
+
+  &__input {
+    color: $white-color;
+    font-size: 14px;
+    margin: 0 8px;
+    pointer-events: none;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__filter {
+    @include buttonSquarePrimary;
+  }
 }

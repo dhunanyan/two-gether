@@ -1,0 +1,94 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.browse-header {
+  background: $gradient-black;
+  max-height: 300px;
+
+  &__container {
+    @include container;
+    position: relative;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__description {
+    @include description;
+    text-align: left;
+  }
+
+  &__title {
+    @include titleSmall;
+    text-align: left;
+    margin: 8px 0 24px 0;
+  }
+
+  &__banner {
+    transform: translate(0, 20px);
+    left: 10px;
+    right: 10px;
+
+    @media screen and (min-width: 425px) {
+      left: 15px;
+      right: 15px;
+    }
+
+    @media screen and (min-width: 768px) {
+      left: 30px;
+      right: 30px;
+    }
+
+    &-container {
+      @include regularShadow;
+      border-radius: 16px;
+      min-height: 140px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    &-img {
+      position: absolute;
+      width: 100%;
+
+      img {
+        pointer-events: none;
+        width: 100%;
+      }
+    }
+
+    &-content {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      padding: 13px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    &-label {
+      @include titleSmall;
+      @include thinShadow;
+      background-color: $red-color;
+      border-radius: 8px;
+      margin: 0 0 12px;
+      padding: 4px 6px;
+    }
+
+    &-title {
+      @include title;
+      text-align: left;
+
+      span {
+        @include regularShadow;
+        background-image: $gradient-black;
+        border-radius: 6px;
+        display: inline;
+        line-height: 10px !important;
+        padding: 1px 4px;
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ import { formatDate } from "@/lib/utils";
 
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author };
 
-const StartupCard = ({
+export const StartupCard = ({
   _id,
   _createdAt,
   views,
@@ -80,5 +80,3 @@ export const StartupCardSkeleton = () => (
     ))}
   </>
 );
-
-export default StartupCard;
