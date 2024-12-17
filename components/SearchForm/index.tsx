@@ -8,7 +8,12 @@ import { Icons } from "@/config";
 
 import "./SearchForm.scss";
 
-export const SearchForm = ({ query }: { query: string }) => {
+export type SearchFormPropsType = {
+  query: string;
+  placeholder: string;
+};
+
+export const SearchForm = ({ query, placeholder }: SearchFormPropsType) => {
   const pathname = usePathname();
   const ref = React.useRef<HTMLInputElement | null>(null);
 
@@ -44,7 +49,7 @@ export const SearchForm = ({ query }: { query: string }) => {
           type="text"
           name="query"
           defaultValue={query}
-          placeholder="Search Cafes"
+          placeholder={placeholder}
           autoComplete="off"
           className="search__input"
         />
@@ -52,7 +57,6 @@ export const SearchForm = ({ query }: { query: string }) => {
           type="submit"
           dangerouslySetInnerHTML={{ __html: Icons.Search }}
         />
-        {/* {query && <Reset />} */}
       </Form>
 
       <button

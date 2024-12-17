@@ -26,8 +26,19 @@ export default async function Cafes({
 
   return (
     <>
-      <BrowseHeader query={query} />
-      <Browse query={query} data={data} />
+      <BrowseHeader
+        query={query}
+        placeholder="Search Restaurants"
+        imageURL="/images/browse-header-cafes-banner.png"
+        label="Restaurants"
+        title="Find your next favorite spot"
+      />
+      <Browse
+        query={query}
+        title="All Restaurants"
+        description="No restaurants found"
+        data={data}
+      />
       <SanityLive />
     </>
   );

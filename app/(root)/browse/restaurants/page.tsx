@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import { SearchForm } from "@/components";
-import StartupCard, { type StartupCardType } from "@/components/StartupCard";
+import { BrowseHeader, Browse } from "@/components";
+import { type StartupCardType } from "@/components/StartupCard";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { redirect } from "next/navigation";
@@ -26,33 +26,22 @@ export default async function Restaurants({
 
   return (
     <>
-      <section className="pink_container">
-        <h1 className="heading">
-          Pitch Your Startup
-          <br />
-          Connect With Entrepreneurs
-        </h1>
-        <p className="sub-heading !max-w-3xl">
-          Submit Ideas, Vote on Pitches and Get Noticed in Virtual Competitions
-        </p>
-        <SearchForm query={query} />
-      </section>
-
-      <section className="section_container">
-        <p className="text-30-semibold">
-          {query ? `Search result for "${query}"` : "All Startups"}
-        </p>
-
-        <ul className="mt-7 card_grid">
-          {data?.length > 0 ? (
-            data.map((post) => <StartupCard key={post?._id} {...post} />)
-          ) : (
-            <p className="no-results">No startups found</p>
-          )}
-        </ul>
-      </section>
-
-      <SanityLive />
+      <>
+        <BrowseHeader
+          query={query}
+          placeholder="Search Cafes"
+          imageURL="/images/browse-header-restaurants-banner.png"
+          label="Restaurants"
+          title="Discover your next favorite meal"
+        />
+        <Browse
+          query={query}
+          title="All Cafes"
+          description="No cafes found"
+          data={data}
+        />
+        <SanityLive />
+      </>
     </>
   );
 }

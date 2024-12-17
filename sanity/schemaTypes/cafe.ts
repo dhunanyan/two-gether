@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const startup = defineType({
-  name: "startup",
-  title: "Startup",
+export const cafe = defineType({
+  name: "cafe",
+  title: "Cafe",
   type: "document",
   fields: [
     defineField({
@@ -12,9 +12,7 @@ export const startup = defineType({
     defineField({
       name: "slug",
       type: "slug",
-      options: {
-        source: "title",
-      },
+      options: { source: "title" },
     }),
     defineField({
       name: "author",
@@ -22,7 +20,7 @@ export const startup = defineType({
       to: { type: "author" },
     }),
     defineField({
-      name: "views",
+      name: "rating",
       type: "number",
     }),
     defineField({
@@ -31,18 +29,13 @@ export const startup = defineType({
     }),
     defineField({
       name: "category",
-      type: "string",
-      validation: (Rule) =>
-        Rule.min(1).max(20).required().error("Please enter a category"),
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "category" }] }],
     }),
     defineField({
       name: "image",
       type: "url",
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: "pitch",
-      type: "markdown",
     }),
   ],
 });

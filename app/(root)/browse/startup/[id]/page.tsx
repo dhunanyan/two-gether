@@ -6,15 +6,11 @@ import Image from "next/image";
 import View from "@/components/View";
 
 import { client } from "@/sanity/lib/client";
-import {
-  PLAYLIST_BY_SLUG_QUERY,
-  STARTUP_BY_ID_QUERY,
-} from "@/sanity/lib/queries";
-import StartupCard, { type StartupCardType } from "@/components/StartupCard";
+import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/queries";
+import { StartupCard, type StartupCardType } from "@/components/StartupCard";
 import { formatDate } from "@/lib/utils";
 
 import markdownit from "markdown-it";
-import { Playlist } from "@/sanity/types";
 
 const md = markdownit();
 
@@ -23,13 +19,14 @@ export const experimental_ppr = true;
 const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
 
-  const [post, playlist] = await Promise.all([
+  // TODO: @SCHEMA
+  const [post /* playlist */] = await Promise.all([
     (await client.fetch(STARTUP_BY_ID_QUERY, {
       id,
     })) as StartupCardType,
-    (await client.fetch(PLAYLIST_BY_SLUG_QUERY, {
-      slug: "editor-picks-new",
-    })) as unknown as Playlist,
+    // (await client.fetch(PLAYLIST_BY_SLUG_QUERY, {
+    //   slug: "editor-picks-new",
+    // })) as unknown as Playlist,
   ]);
 
   if (!post) return notFound();
@@ -89,21 +86,6 @@ const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
 
         <hr className="divider" />
-
-        {playlist && playlist.select && playlist.select.length > 0 && (
-          <div className="max-w-4xl mx-auto">
-            <p className="text-30-semibold">Editor Picks</p>
-
-            <ul className="mt-7 card_grid-sm">
-              {playlist.select.map((post, i) => (
-                <StartupCard
-                  key={i}
-                  {...(post as unknown as StartupCardType)}
-                />
-              ))}
-            </ul>
-          </div>
-        )}
 
         <Suspense
           fallback={/* TODO: @COMPONENT */ <div className="view_skeleton" />}

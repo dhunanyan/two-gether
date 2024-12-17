@@ -5,14 +5,21 @@ import "./Browse.scss";
 
 export type BrowsePropsType = {
   query: string;
+  title: string;
+  description: string;
   data: StartupCardType[];
 };
 
-export const Browse = ({ query, data }: BrowsePropsType) => (
+export const Browse = ({
+  query,
+  title,
+  description,
+  data,
+}: BrowsePropsType) => (
   <section className="browse">
     <div className="browse__container">
       <h2 className="browse__title">
-        {query ? `Search result for "${query}"` : "All Startups"}
+        {query ? `Search result for "${query}"` : title}
       </h2>
 
       {data?.length > 0 ? (
@@ -22,7 +29,7 @@ export const Browse = ({ query, data }: BrowsePropsType) => (
           ))}
         </ul>
       ) : (
-        <p className="browse__description">No startups found</p>
+        <p className="browse__description">{description}</p>
       )}
     </div>
   </section>
