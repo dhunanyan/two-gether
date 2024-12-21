@@ -60,11 +60,13 @@ export const metadata: Metadata = {
     "Celebrate your love story with TwoGether! Seamlessly track, rate, and relive your favorite date spots while discovering new adventures to cherish. From cozy cafes to scenic getaways, create a shared journey of unforgettable memories. Two hearts, one app, countless moments to treasure.",
 };
 
+export type RootLayoutPropsType = {
+  children: React.ReactNode;
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<RootLayoutPropsType>) {
   return (
     <html lang="en">
       <body className={`${workSans.variable}`}>

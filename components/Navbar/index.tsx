@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { auth } from "@/auth";
-import { Icons } from "@/config";
+import { Icons } from "@/lib";
 
 import { NavbarLink, NavbarLinkPropsType } from "./NavbarLink";
 import "./Navbar.scss";
@@ -21,9 +21,9 @@ export const Navbar = async () => {
       regex: "restaurants",
     },
     {
-      href: "/browse/startup/create",
+      href: "/browse/local/create",
       icon: Icons.CirclePlus,
-      regex: "startup",
+      regex: "local",
     },
     {
       href: `/browse/user/${session?.id}`,

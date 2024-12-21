@@ -1,5 +1,7 @@
 import * as React from "react";
-import { StartupCard, type StartupCardType } from "../StartupCard";
+
+import { LocalCard } from "../LocalCard";
+import { type Local } from "@/sanity/types";
 
 import "./Browse.scss";
 
@@ -7,7 +9,7 @@ export type BrowsePropsType = {
   query: string;
   title: string;
   description: string;
-  data: StartupCardType[];
+  data: Local[];
 };
 
 export const Browse = ({
@@ -25,7 +27,7 @@ export const Browse = ({
       {data?.length > 0 ? (
         <ul className="browse__list">
           {data.map((post) => (
-            <StartupCard key={post?._id} {...post} />
+            <LocalCard key={post?._id} {...post} />
           ))}
         </ul>
       ) : (

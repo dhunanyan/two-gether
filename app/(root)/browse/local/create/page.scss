@@ -1,0 +1,29 @@
+@import "../../../../../styles/variables";
+@import "../../../../../styles/mixins";
+
+.create {
+  position: relative;
+
+  &__overlay {
+    background: $gradient-black;
+    height: 240px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  &__container {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    @include title;
+  }
+}

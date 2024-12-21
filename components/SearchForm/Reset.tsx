@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+
+import * as React from "react";
 
 import { redirect, usePathname } from "next/navigation";
-import { Icons } from "@/config";
+import { Icons } from "@/lib";
 
 export const Reset = () => {
   const pathname = usePathname();

@@ -2,5 +2,10 @@
 @import "../../../styles/mixins";
 
 .main {
-  height: calc(100vh - $navbar-offset - $bottom-padding);
+  @include scrollbar;
+  height: calc(100% - $navbar-offset);
+  left: 0;
+  overflow-y: auto;
+  position: relative;
+  top: 0;
 }

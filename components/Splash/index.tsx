@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import "./Splash.scss";
 import Link from "next/link";
+import "./Splash.scss";
 
 export const Splash = () => (
   <section className="splash">

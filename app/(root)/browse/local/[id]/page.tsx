@@ -1,37 +1,30 @@
-import React, { Suspense } from "react";
+import * as React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-import View from "@/components/View";
-
-import { client } from "@/sanity/lib/client";
-import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/queries";
-import { StartupCard, type StartupCardType } from "@/components/StartupCard";
-import { formatDate } from "@/lib/utils";
-
-import markdownit from "markdown-it";
-
-const md = markdownit();
+import { client, LOCAL_BY_ID_QUERY } from "@/sanity";
+import { type LocalCardType } from "@/components";
+import { formatDate } from "@/lib";
 
 export const experimental_ppr = true;
 
-const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
+export type LocalPropsType = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function Local({ params }: LocalPropsType) {
   const id = (await params).id;
 
   // TODO: @SCHEMA
   const [post /* playlist */] = await Promise.all([
-    (await client.fetch(STARTUP_BY_ID_QUERY, {
-      id,
-    })) as StartupCardType,
+    (await client.fetch(LOCAL_BY_ID_QUERY, { id })) as LocalCardType,
     // (await client.fetch(PLAYLIST_BY_SLUG_QUERY, {
     //   slug: "editor-picks-new",
     // })) as unknown as Playlist,
   ]);
 
   if (!post) return notFound();
-
-  const parsedContent = md.render(post?.pitch || "");
 
   return (
     <>
@@ -71,30 +64,28 @@ const Startup = async ({ params }: { params: Promise<{ id: string }> }) => {
               </div>
             </Link>
 
-            <p className="category-tag">{post.category}</p>
+            {/* <p className="category-tag">{post.category}</p> */}
           </div>
 
           <h3 className="text-30-bold">Pitch Details</h3>
-          {parsedContent ? (
+          {/* {parsedContent ? (
             <article
               className="prose max-w-4xl font-work-sans break-all"
               dangerouslySetInnerHTML={{ __html: parsedContent }}
             />
           ) : (
             <p className="no-result">No details provided</p>
-          )}
+          )} */}
         </div>
 
         <hr className="divider" />
 
-        <Suspense
-          fallback={/* TODO: @COMPONENT */ <div className="view_skeleton" />}
+        {/* <React.Suspense
+          fallback={ TODO: @COMPONENT <div className="view_skeleton" />}
         >
           <View id={post._id} />
-        </Suspense>
+        </React.Suspense> */}
       </section>
     </>
   );
-};
-
-export default Startup;
+}

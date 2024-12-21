@@ -1,16 +1,18 @@
-import React, { Suspense } from "react";
+import * as React from "react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { auth } from "@/auth";
-import { client } from "@/sanity/lib/client";
-import { AUTHOR_BY_ID_QUERY } from "@/sanity/lib/queries";
-import Image from "next/image";
-import UserStartups from "@/components/UserStartups";
-import { StartupCardSkeleton } from "@/components/StartupCard";
+import { client, AUTHOR_BY_ID_QUERY } from "@/sanity";
+import { UserLocals } from "@/components";
 
 export const experimental_ppr = true;
 
-const User = async ({ params }: { params: Promise<{ id: string }> }) => {
+export type UserPropsType = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function User({ params }: UserPropsType) {
   const { id } = await params;
   const session = await auth();
 
@@ -19,7 +21,7 @@ const User = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!user) return notFound();
 
   return (
-    <main>
+    <>
       <section className="profile_container">
         <div className="profile_card">
           <div className="profile_title">
@@ -46,14 +48,15 @@ const User = async ({ params }: { params: Promise<{ id: string }> }) => {
           </p>
 
           <ul className="card_grid-sm">
-            <Suspense fallback={<StartupCardSkeleton />}>
-              <UserStartups id={id} />
-            </Suspense>
+            <React.Suspense
+            /*TODO: @COMPONENT
+            fallback={<StartupCardSkeleton />}*/
+            >
+              <UserLocals id={id} />
+            </React.Suspense>
           </ul>
         </div>
       </section>
-    </main>
+    </>
   );
-};
-
-export default User;
+}

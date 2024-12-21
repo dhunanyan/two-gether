@@ -4,7 +4,7 @@ import * as React from "react";
 import Form from "next/form";
 import { redirect, usePathname } from "next/navigation";
 
-import { Icons } from "@/config";
+import { Icons } from "@/lib";
 
 import "./SearchForm.scss";
 

@@ -132,14 +132,16 @@ export type Category = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  slug?: Slug;
 };
 
-export type Cafe = {
+export type Local = {
   _id: string;
-  _type: "cafe";
+  _type: "local";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  type?: string;
   title?: string;
   slug?: Slug;
   author?: {
@@ -150,13 +152,9 @@ export type Cafe = {
   };
   rating?: number;
   description?: string;
-  category?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  address?: string;
+  phone?: string;
+  categories?: Array<string>;
   image?: string;
 };
 
@@ -182,18 +180,48 @@ export type Author = {
 
 export type Markdown = string;
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Category | Cafe | Slug | Author | Markdown;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Category | Local | Slug | Author | Markdown;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
-// Variable: STARTUPS_QUERY
-// Query: *[_type == "startup" && ((defined(slug.current) && !defined($search)) || (title match $search || category match $search || author->name match $search))] | order(_createdAt desc) {  _id,  title,  slug,  _createdAt,  author -> {    _id,    name,    image,    bio  },  views,  description,  category,  image}
-export type STARTUPS_QUERYResult = Array<never>;
-// Variable: STARTUP_BY_ID_QUERY
-// Query: *[_type == "startup" && _id == $id][0] {  _id,  title,  slug,  _createdAt,  author -> {    _id,    name,    username,    image,    bio  },  views,  description,  category,  image,  pitch}
-export type STARTUP_BY_ID_QUERYResult = null;
-// Variable: STARTUP_VIEWS_QUERY
-// Query: *[_type == "startup" && _id == $id][0] {  _id,  views}
-export type STARTUP_VIEWS_QUERYResult = null;
+// Variable: LOCALS_QUERY
+// Query: *[_type == "local" && ((defined(slug.current) && !defined($search)) || (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {  _id,  _createdAt,  type,  slug,  image,  title,  rating,  description,  categories}
+export type LOCALS_QUERYResult = Array<{
+  _id: string;
+  _createdAt: string;
+  type: string | null;
+  slug: Slug | null;
+  image: string | null;
+  title: string | null;
+  rating: number | null;
+  description: string | null;
+  categories: Array<string> | null;
+}>;
+// Variable: LOCAL_BY_ID_QUERY
+// Query: *[_type == "local" && _id == $id][0] {  _id,  _createdAt,  title,  slug,  author -> {    _id,    name,    username,    image,    bio  },  rating,  description,  categories,  image,  pitch}
+export type LOCAL_BY_ID_QUERYResult = {
+  _id: string;
+  _createdAt: string;
+  title: string | null;
+  slug: Slug | null;
+  author: {
+    _id: string;
+    name: string | null;
+    username: string | null;
+    image: string | null;
+    bio: string | null;
+  } | null;
+  rating: number | null;
+  description: string | null;
+  categories: Array<string> | null;
+  image: string | null;
+  pitch: null;
+} | null;
+// Variable: LOCAL_RATING_QUERY
+// Query: *[_type == "local" && _id == $id][0] {  _id,  rating}
+export type LOCAL_RATING_QUERYResult = {
+  _id: string;
+  rating: number | null;
+} | null;
 // Variable: AUTHOR_BY_GITHUB_ID_QUERY
 // Query: *[_type == "author" && id == $id][0] {  _id,  id,  name,  username,  email,  image,  bio}
 export type AUTHOR_BY_GITHUB_ID_QUERYResult = {
@@ -216,19 +244,34 @@ export type AUTHOR_BY_ID_QUERYResult = {
   image: string | null;
   bio: string | null;
 } | null;
-// Variable: STARTUPS_BY_AUTHOR_QUERY
-// Query: *[_type == "startup" && author._ref == $id] | order(_createdAt desc) {  _id,  title,  slug,  _createdAt,  author -> {    _id,    name,    image,    bio  },  views,  description,  category,  image}
-export type STARTUPS_BY_AUTHOR_QUERYResult = Array<never>;
+// Variable: LOCALS_BY_AUTHOR_QUERY
+// Query: *[_type == "local" && author._ref == $id] | order(_createdAt desc) {  _id,  title,  slug,  _createdAt,  author -> {    _id,    name,    image,    bio  },  rating,  description,  categories,  image}
+export type LOCALS_BY_AUTHOR_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  _createdAt: string;
+  author: {
+    _id: string;
+    name: string | null;
+    image: string | null;
+    bio: string | null;
+  } | null;
+  rating: number | null;
+  description: string | null;
+  categories: Array<string> | null;
+  image: string | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n*[_type == \"startup\" && ((defined(slug.current) && !defined($search)) || (title match $search || category match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author -> {\n    _id,\n    name,\n    image,\n    bio\n  },\n  views,\n  description,\n  category,\n  image\n}": STARTUPS_QUERYResult;
-    "\n*[_type == \"startup\" && _id == $id][0] {\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author -> {\n    _id,\n    name,\n    username,\n    image,\n    bio\n  },\n  views,\n  description,\n  category,\n  image,\n  pitch\n}": STARTUP_BY_ID_QUERYResult;
-    "\n*[_type == \"startup\" && _id == $id][0] {\n  _id,\n  views\n}": STARTUP_VIEWS_QUERYResult;
+    "\n*[_type == \"local\" && ((defined(slug.current) && !defined($search)) || (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  _createdAt,\n  type,\n  slug,\n  image,\n  title,\n  rating,\n  description,\n  categories\n}": LOCALS_QUERYResult;
+    "\n*[_type == \"local\" && _id == $id][0] {\n  _id,\n  _createdAt,\n  title,\n  slug,\n  author -> {\n    _id,\n    name,\n    username,\n    image,\n    bio\n  },\n  rating,\n  description,\n  categories,\n  image,\n  pitch\n}": LOCAL_BY_ID_QUERYResult;
+    "\n*[_type == \"local\" && _id == $id][0] {\n  _id,\n  rating\n}": LOCAL_RATING_QUERYResult;
     "\n*[_type == \"author\" && id == $id][0] {\n  _id,\n  id,\n  name,\n  username,\n  email,\n  image,\n  bio\n}": AUTHOR_BY_GITHUB_ID_QUERYResult;
     "\n*[_type == \"author\" && _id == $id][0] {\n  _id,\n  id,\n  name,\n  username,\n  email,\n  image,\n  bio\n}": AUTHOR_BY_ID_QUERYResult;
-    "\n*[_type == \"startup\" && author._ref == $id] | order(_createdAt desc) {\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author -> {\n    _id,\n    name,\n    image,\n    bio\n  },\n  views,\n  description,\n  category,\n  image\n}": STARTUPS_BY_AUTHOR_QUERYResult;
+    "\n*[_type == \"local\" && author._ref == $id] | order(_createdAt desc) {\n  _id,\n  title,\n  slug,\n  _createdAt,\n  author -> {\n    _id,\n    name,\n    image,\n    bio\n  },\n  rating,\n  description,\n  categories,\n  image\n}": LOCALS_BY_AUTHOR_QUERYResult;
   }
 }

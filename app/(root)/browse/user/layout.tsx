@@ -1,10 +1,10 @@
 import { BottomPadding } from "@/components";
 
-export default function Layout({
-  children,
-}: Readonly<{
+export type LayoutPropsType = {
   children: React.ReactNode;
-}>) {
+};
+
+export default function Layout({ children }: Readonly<LayoutPropsType>) {
   return (
     <>
       {children}

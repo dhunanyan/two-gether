@@ -1,17 +1,16 @@
-import { auth } from "@/auth";
-import { BrowseHeader, Browse } from "@/components";
-import { type StartupCardType } from "@/components/StartupCard";
-import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
+import { BrowseHeader, Browse, type LocalCardType } from "@/components";
+import { sanityFetch, SanityLive, LOCALS_QUERY } from "@/sanity";
 
 import "./page.scss";
 
-export default async function Cafes({
-  searchParams,
-}: {
+export type CafesPropsType = {
   searchParams: Promise<{ query: string }>;
-}) {
+};
+
+export default async function Cafes({ searchParams }: CafesPropsType) {
   const session = await auth();
 
   if (!session) redirect("/");
@@ -20,23 +19,24 @@ export default async function Cafes({
   const params = { search: query || null };
 
   const { data } = (await sanityFetch({
-    query: STARTUPS_QUERY,
+    query: LOCALS_QUERY,
     params,
-  })) as unknown as { data: StartupCardType[] };
+  })) as unknown as { data: LocalCardType[] };
 
   return (
     <>
       <BrowseHeader
-        query={query}
-        placeholder="Search Restaurants"
-        imageURL="/images/browse-header-cafes-banner.png"
-        label="Restaurants"
-        title="Find your next favorite spot"
+        searchForm={{ query, placeholder: "Search Cafes" }}
+        banner={{
+          imageURL: "/images/browse-header-cafes-banner.png",
+          labels: ["Cafes"],
+          title: "Find your next favorite spot",
+        }}
       />
       <Browse
         query={query}
-        title="All Restaurants"
-        description="No restaurants found"
+        title="All Cafes"
+        description="No cafes found"
         data={data}
       />
       <SanityLive />

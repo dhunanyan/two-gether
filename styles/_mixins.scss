@@ -36,6 +36,27 @@
   -moz-box-shadow: none;
 }
 
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $grey-color-darker;
+    border: 3px solid $grey-color-darker;
+    cursor: pointer;
+
+    &:active {
+      background-color: $grey-color-darker;
+      border: 3px solid $grey-color-darker;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $grey-color;
+  }
+}
+
 @mixin container {
   height: calc(100% - 20px * 2);
   max-width: 1220px;

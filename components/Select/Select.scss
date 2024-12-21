@@ -1,0 +1,102 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.select {
+  position: relative;
+  width: 100%;
+
+  &__trigger {
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid $primary-color;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    height: calc(49px - 14px * 2);
+    padding: 12px 6px;
+    user-select: none;
+    transition: border-color 150ms;
+
+    &:focus {
+      border-color: $black-color;
+      outline: none;
+    }
+
+    &--open {
+      border-color: $black-color;
+
+      .select__arrow {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  &__value {
+    @include description;
+    color: $black-color;
+  }
+
+  &__arrow {
+    color: #999;
+    font-size: 12px;
+    transition: transform 150ms;
+  }
+
+  &__content {
+    background-color: $white-color;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    top: calc(100% + 5px);
+    transform: translateY(-10px);
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease,
+      visibility 0ms linear 150ms;
+    visibility: hidden;
+    width: 100%;
+    z-index: 10;
+
+    &--show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition:
+        opacity 150ms ease,
+        transform 150ms ease;
+    }
+
+    &--hide {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition:
+        opacity 150ms ease,
+        transform 150ms ease,
+        visibility 0ms linear 0ms;
+    }
+  }
+
+  &__option {
+    @include description;
+    color: $black-color;
+    cursor: pointer;
+    height: calc(49px - 14px * 2);
+    padding: 12px 6px;
+    text-align: left;
+    transition: background-color 150ms;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $white-color;
+    }
+
+    &:active {
+      background-color: #eaeaea;
+    }
+  }
+}

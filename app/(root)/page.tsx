@@ -9,5 +9,9 @@ export default async function Splash() {
 
   if (!!session) redirect("/browse/cafes");
 
-  return <SplashComponent />;
+  return (
+    <main>
+      <SplashComponent />
+    </main>
+  );
 }

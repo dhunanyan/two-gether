@@ -33,7 +33,7 @@
 
 ## <a name="introduction">🤖 Introduction</a>
 
-A Next.js 15 platform where entrepreneurs can submit their startup ideas for virtual pitch competitions, browse other
+A Next.js 15 platform where entrepreneurs can submit their local ideas for virtual pitch competitions, browse other
 pitches, and gain exposure through a clean minimalistic design for a smooth user experience.
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
@@ -46,11 +46,11 @@ pitches, and gain exposure through a clean minimalistic design for a smooth user
 
 ## <a name="features">🔋 Features</a>
 
-👉 **Live Content API**: Displays the latest startup ideas dynamically on the homepage using Sanity's Content API.
+👉 **Live Content API**: Displays the latest local ideas dynamically on the homepage using Sanity's Content API.
 
 👉 **GitHub Authentication**: Allows users to log in easily using their GitHub account.
 
-👉 **Pitch Submission**: Users can submit startup ideas, including title, description, category, and multimedia links (
+👉 **Pitch Submission**: Users can submit local ideas, including title, description, category, and multimedia links (
 image or video).
 
 👉 **View Pitches**: Browse through submitted ideas with filtering options by category.
@@ -59,7 +59,7 @@ image or video).
 
 👉 **Profile Page**: Users can view the list of pitches they've submitted.
 
-👉 **Editor Picks**: Admins can highlight top startup ideas using the "Editor Picks" feature managed via Sanity Studio.
+👉 **Editor Picks**: Admins can highlight top local ideas using the "Editor Picks" feature managed via Sanity Studio.
 
 👉 **Views Counter**: Tracks the number of views for each pitch instead of an upvote system.
 
@@ -404,57 +404,57 @@ export default config;
     @apply size-[50px] rounded-full bg-black flex justify-center items-center !important;
   }
 
-  /* startupcard */
-  .startup-card {
+  /* localcard */
+  .local-card {
     @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100;
   }
 
-  .startup-card_date {
+  .local-card_date {
     @apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100;
   }
 
-  .startup-card_desc {
+  .local-card_desc {
     @apply font-normal text-[16px] line-clamp-2 my-3 text-black-100 break-all;
   }
 
-  .startup-card_img {
+  .local-card_img {
     @apply w-full h-[164px] rounded-[10px] object-cover;
   }
 
-  .startup-card_btn {
+  .local-card_btn {
     @apply rounded-full bg-black-200 font-medium text-[16px] text-white px-5 py-3 !important;
   }
 
-  .startup-card_skeleton {
+  .local-card_skeleton {
     @apply w-full h-96 rounded-[22px] bg-zinc-400;
   }
 
-  /* startupform */
-  .startup-form {
+  /* localform */
+  .local-form {
     @apply max-w-2xl mx-auto bg-white my-10 space-y-8 px-6;
   }
 
-  .startup-form_label {
+  .local-form_label {
     @apply font-bold text-[18px] text-black uppercase;
   }
 
-  .startup-form_input {
+  .local-form_input {
     @apply border-[3px] border-black px-5 py-7 text-[18px] text-black font-semibold rounded-full mt-3 placeholder:text-black-300 !important;
   }
 
-  .startup-form_textarea {
+  .local-form_textarea {
     @apply border-[3px] border-black p-5 text-[18px] text-black font-semibold rounded-[20px] mt-3 placeholder:text-black-300 !important;
   }
 
-  .startup-form_error {
+  .local-form_error {
     @apply text-red-500 mt-2 ml-5;
   }
 
-  .startup-form_editor {
+  .local-form_editor {
     @apply mt-3 border-[3px] border-black text-[18px] text-black font-semibold placeholder:text-black-300 !important;
   }
 
-  .startup-form_btn {
+  .local-form_btn {
     @apply bg-primary border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] !important;
   }
 
@@ -557,7 +557,7 @@ export const formSchema = z.object({
   <summary><code>components/Ping.tsx</code></summary>
 
 ```typescript jsx
-import React from "react";
+import * as React from "react";
 
 const Ping = () => {
   return (

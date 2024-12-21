@@ -3,7 +3,13 @@
 
 .navbar {
   @include thinShadow;
+  background-color: $grey-color;
+  bottom: 0;
   height: 98px;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  z-index: 999999;
 
   &__list {
     @include container;

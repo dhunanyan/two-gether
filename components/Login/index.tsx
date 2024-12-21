@@ -3,8 +3,8 @@ import * as React from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
+import { Icons } from "@/lib";
 import { auth, signIn } from "@/auth";
-import { Icons } from "@/config";
 
 import "./Login.scss";
 

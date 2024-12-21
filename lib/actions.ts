@@ -1,60 +1,76 @@
 "use server";
 
 import { auth } from "@/auth";
-import { parseServerActionResponse } from "@/lib/utils";
+import { parseServerActionResponse, Status, Error } from "@/lib";
+import { writeClient } from "@/sanity";
+import { formSchema } from "./validation";
 import slugify from "slugify";
-import { writeClient } from "@/sanity/lib/write-client";
 
-export const createPitch = async (
-  //eslint-disable-next-line @typescript-eslint/no-explicit-any
-  state: any,
-  form: FormData,
-  pitch: string
-) => {
+export type CreateLocalType = {
+  formData: FormData;
+  categories: string[];
+  type: string;
+};
+
+export const createLocal = async ({
+  formData,
+  categories,
+  type,
+}: CreateLocalType) => {
   const session = await auth();
 
   if (!session)
     return parseServerActionResponse({
       error: "Not signed in",
-      status: "ERROR",
+      status: Status.ERROR,
     });
 
-  const { title, description, category, link } = Object.fromEntries(
-    Array.from(form).filter(([key]) => key !== "pitch")
-  );
+  const formValues = {
+    type,
+    title: formData.get("title") as string,
+    address: formData.get("address") as string,
+    phone: formData.get("phone") as string,
+    description: formData.get("description") as string,
+    image: formData.get("image") as string,
+    categories,
+  };
 
-  const slug = slugify(title as string, { lower: true, strict: true });
+  await formSchema.parseAsync(formValues);
+
+  const { title, description, image, address, phone } = formValues;
 
   try {
-    const startup = {
+    const local = {
+      type,
       title,
       description,
-      category,
-      image: link,
+      image,
       slug: {
-        _type: slug,
-        current: slug,
+        _type: "slug",
+        current: slugify(title as string, { lower: true, strict: true }),
       },
       author: {
         _type: "reference",
         _ref: session?.id,
       },
-      pitch,
+      address,
+      phone,
+      categories,
     };
 
-    const result = await writeClient.create({ _type: "startup", ...startup });
+    const result = await writeClient.create({ _type: "local", ...local });
 
     return parseServerActionResponse({
       ...result,
-      error: "",
-      status: "SUCCESS",
+      error: Error.EMPTY,
+      status: Status.SUCCESS,
     });
   } catch (error) {
     console.log(error);
 
     return parseServerActionResponse({
       error: JSON.stringify(error),
-      status: "ERROR",
+      status: Status.ERROR,
     });
   }
 };
