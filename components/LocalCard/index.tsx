@@ -1,24 +1,29 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { Categories, Icons, parseCategory } from "@/lib";
+import { Categories, parseCategory } from "@/lib";
 import { type Local } from "@/sanity/types";
+import { RatingStars } from "../RatingStars";
 
 import "./LocalCard.scss";
 
-export const LocalCard = ({ _id, rating, image, title, categories }: Local) => {
+export type LocalCardPropsType = {
+  userId: string;
+} & Local;
+
+export const LocalCard = ({
+  _id,
+  image,
+  title,
+  categories,
+  rating,
+  userId,
+}: LocalCardPropsType) => {
   return (
     <li className="local-card">
       <div className="local-card__image">
         <img src={image} alt="placeholder" />
-
-        <span className="local-card__rating">
-          <span
-            className="local-card__rating-icon"
-            dangerouslySetInnerHTML={{ __html: Icons.Star }}
-          />
-          <span className="local-card__rating-count">{rating || 0}</span>
-        </span>
+        <RatingStars _id={_id} userId={userId} rating={rating} />
       </div>
 
       <h3 className="local-card__title">{title}</h3>

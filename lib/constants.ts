@@ -16,3 +16,9 @@ export enum Categories {
   OLD_SCHOOL = "old-school",
   NEW_SCHOOL = "new-school",
 }
+
+export enum Stars {
+  ACTIVE = "active",
+  HALF = "half",
+  DISABLED = "disabled",
+}

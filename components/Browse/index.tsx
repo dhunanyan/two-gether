@@ -6,17 +6,19 @@ import { type Local } from "@/sanity/types";
 import "./Browse.scss";
 
 export type BrowsePropsType = {
+  data: Local[];
   query: string;
   title: string;
+  userId: string;
   description: string;
-  data: Local[];
 };
 
 export const Browse = ({
+  data,
   query,
   title,
+  userId,
   description,
-  data,
 }: BrowsePropsType) => (
   <section className="browse">
     <div className="browse__container">
@@ -27,7 +29,7 @@ export const Browse = ({
       {data?.length > 0 ? (
         <ul className="browse__list">
           {data.map((post) => (
-            <LocalCard key={post?._id} {...post} />
+            <LocalCard key={post?._id} {...post} userId={userId} />
           ))}
         </ul>
       ) : (

@@ -38,7 +38,26 @@ export const local = defineType({
     defineField({
       name: "rating",
       title: "Rating",
-      type: "number",
+      type: "array",
+      of: [
+        defineField({
+          name: "ratingObject",
+          title: "Rating Object",
+          type: "object",
+          fields: [
+            defineField({
+              name: "userId",
+              title: "User ID",
+              type: "string",
+            }),
+            defineField({
+              name: "value",
+              title: "Value",
+              type: "number",
+            }),
+          ],
+        }),
+      ],
     }),
     defineField({
       name: "description",

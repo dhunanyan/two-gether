@@ -3,7 +3,7 @@
 import { auth } from "@/auth";
 import { parseServerActionResponse, Status, Error } from "@/lib";
 import { writeClient } from "@/sanity";
-import { formSchema } from "./validation";
+import { formSchema } from "../validation";
 import slugify from "slugify";
 
 export type CreateLocalType = {
@@ -56,6 +56,7 @@ export const createLocal = async ({
       address,
       phone,
       categories,
+      rating: [],
     };
 
     const result = await writeClient.create({ _type: "local", ...local });

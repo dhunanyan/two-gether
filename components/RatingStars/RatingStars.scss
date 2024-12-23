@@ -1,0 +1,101 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.rating-stars {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0 0 0 20px;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+
+  &__container {
+    align-items: center;
+    display: flex;
+    gap: 2px;
+    overflow: hidden;
+    width: 108px;
+    transition: all 150ms ease-in-out;
+  }
+
+  &__form {
+    &--1 {
+      order: 5;
+    }
+
+    &--2 {
+      order: 4;
+    }
+
+    &--3 {
+      order: 3;
+    }
+
+    &--4 {
+      order: 2;
+    }
+
+    &--5 {
+      order: 1;
+    }
+
+    button {
+      min-height: 20px;
+      min-width: 20px;
+      transition: all 300ms $animation-bubble;
+
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    &--active button {
+      color: $yellow-color;
+    }
+
+    &--half button {
+      color: $grey-color-darker;
+
+      .active-half {
+        color: $yellow-color;
+        transition: all 150ms $animation-bubble;
+      }
+    }
+
+    &--disabled button {
+      color: $grey-color-darker;
+    }
+
+    &:hover {
+      button {
+        color: $yellow-color;
+        transform: scale(1.2);
+      }
+
+      &--active button,
+      &--disabled button,
+      &--half button {
+        color: $yellow-color;
+
+        .active-half {
+          color: $yellow-color;
+        }
+      }
+    }
+
+    &:nth-child(-n + 1):hover ~ .rating-stars__form button,
+    &:nth-child(-n + 2):hover ~ .rating-stars__form button,
+    &:nth-child(-n + 3):hover ~ .rating-stars__form button,
+    &:nth-child(-n + 4):hover ~ .rating-stars__form button,
+    &:nth-child(-n + 5):hover ~ .rating-stars__form button {
+      color: $yellow-color;
+      transform: scale(1.1);
+    }
+  }
+
+  &__count {
+    color: $white-color;
+    margin: 0 0 0 4px;
+  }
+}

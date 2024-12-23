@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { BrowseHeader, Browse, type LocalCardType } from "@/components";
-import { sanityFetch, SanityLive, LOCALS_QUERY } from "@/sanity";
+import { sanityFetch, SanityLive, RESTAURANTS_QUERY } from "@/sanity";
 import { redirect } from "next/navigation";
 
 import "./page.scss";
@@ -8,6 +8,8 @@ import "./page.scss";
 export type RestaurantsPropsType = {
   searchParams: Promise<{ query: string }>;
 };
+
+export const experimental_ppr = true;
 
 export default async function Restaurants({
   searchParams,
@@ -20,7 +22,7 @@ export default async function Restaurants({
   const params = { search: query || null };
 
   const { data } = (await sanityFetch({
-    query: LOCALS_QUERY,
+    query: RESTAURANTS_QUERY,
     params,
   })) as unknown as { data: LocalCardType[] };
 
@@ -40,6 +42,7 @@ export default async function Restaurants({
           title="All Restaurants"
           description="No restaurants found"
           data={data}
+          userId={session.id}
         />
         <SanityLive />
       </>

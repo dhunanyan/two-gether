@@ -4,6 +4,7 @@ import CirclePlus from "../public/svg/i_CirclePlus.svg";
 import Cup from "../public/svg/i_Cup.svg";
 import Filter from "../public/svg/i_Filter.svg";
 import GitHub from "../public/svg/i_GitHub.svg";
+import HalfStar from "../public/svg/i_HalfStar.svg";
 import Home from "../public/svg/i_Home.svg";
 import Image from "../public/svg/i_Image.svg";
 import Logo from "../public/svg/i_Logo.svg";
@@ -23,6 +24,7 @@ export const Icons = {
   Cup,
   Filter,
   GitHub,
+  HalfStar,
   Home,
   Image,
   Logo,

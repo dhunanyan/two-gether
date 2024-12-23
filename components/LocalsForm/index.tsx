@@ -58,6 +58,7 @@ export const LocalsForm = () => {
     try {
       setImage(await convertToBase64(e.target.files?.[0] as Blob));
     } catch (e) {
+      console.log(e);
       setImage(null);
     }
   };

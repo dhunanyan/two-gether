@@ -2,13 +2,15 @@ import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
 import { BrowseHeader, Browse, type LocalCardType } from "@/components";
-import { sanityFetch, SanityLive, LOCALS_QUERY } from "@/sanity";
+import { sanityFetch, SanityLive, CAFES_QUERY } from "@/sanity";
 
 import "./page.scss";
 
 export type CafesPropsType = {
   searchParams: Promise<{ query: string }>;
 };
+
+export const experimental_ppr = true;
 
 export default async function Cafes({ searchParams }: CafesPropsType) {
   const session = await auth();
@@ -19,7 +21,7 @@ export default async function Cafes({ searchParams }: CafesPropsType) {
   const params = { search: query || null };
 
   const { data } = (await sanityFetch({
-    query: LOCALS_QUERY,
+    query: CAFES_QUERY,
     params,
   })) as unknown as { data: LocalCardType[] };
 
@@ -34,10 +36,11 @@ export default async function Cafes({ searchParams }: CafesPropsType) {
         }}
       />
       <Browse
+        data={data}
         query={query}
         title="All Cafes"
+        userId={session.id}
         description="No cafes found"
-        data={data}
       />
       <SanityLive />
     </>

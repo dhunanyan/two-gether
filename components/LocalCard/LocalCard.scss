@@ -13,7 +13,7 @@
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    max-width: calc(100% / 3);
+    max-width: calc(100% / 3 - (13px * 2));
   }
 
   &__title {
@@ -35,34 +35,6 @@
     }
   }
 
-  &__rating {
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 0 0 0 50%;
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    &-icon {
-      color: $yellow-color;
-      height: 20px;
-      width: 20px;
-
-      svg {
-        height: 100%;
-        width: 100%;
-      }
-    }
-
-    &-count {
-      color: $white-color;
-      margin: 0 0 0 4px;
-    }
-  }
-
   &__categories {
     align-items: center;
     display: flex;
@@ -79,5 +51,11 @@
 
   &__details {
     @include buttonPrimary;
+  }
+
+  .rating-stars {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }

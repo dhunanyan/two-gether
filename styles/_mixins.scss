@@ -42,13 +42,13 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $grey-color-darker;
-    border: 3px solid $grey-color-darker;
+    background-color: $grey-color-dark;
+    border: 3px solid $grey-color-dark;
     cursor: pointer;
 
     &:active {
-      background-color: $grey-color-darker;
-      border: 3px solid $grey-color-darker;
+      background-color: $grey-color-dark;
+      border: 3px solid $grey-color-dark;
     }
   }
 
@@ -179,7 +179,7 @@
 }
 
 @mixin description {
-  color: $grey-color-darker;
+  color: $grey-color-dark;
   text-align: center;
   font-family: $font-work-sans;
   font-size: 14px;
