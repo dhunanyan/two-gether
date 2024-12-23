@@ -22,3 +22,8 @@ export enum Stars {
   HALF = "half",
   DISABLED = "disabled",
 }
+
+export enum LocalType {
+  CAFE = "cafe",
+  RESTAURANT = "restaurant",
+}

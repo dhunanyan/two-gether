@@ -33,6 +33,44 @@
       min-height: 200px;
       width: 100%;
     }
+
+    .rating-stars {
+      background-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      padding: 8px;
+      right: 0;
+      top: 0;
+
+      &__container {
+        overflow: hidden;
+      }
+
+      &__form {
+        position: static;
+
+        &:hover {
+          .rating-stars__message-box {
+            opacity: 1;
+            transform: translate(-50%, 0);
+          }
+        }
+      }
+
+      &__value {
+        font-size: 14px;
+
+        &-avg {
+          color: $white-color !important;
+        }
+      }
+
+      &__message-box {
+        bottom: -20px;
+        left: 50%;
+        top: auto;
+        transform: translate(-50%, -5px);
+      }
+    }
   }
 
   &__categories {
@@ -51,11 +89,5 @@
 
   &__details {
     @include buttonPrimary;
-  }
-
-  .rating-stars {
-    position: absolute;
-    right: 0;
-    top: 0;
   }
 }

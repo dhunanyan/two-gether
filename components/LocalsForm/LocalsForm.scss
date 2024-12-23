@@ -130,7 +130,7 @@
   &__preview-image {
     @include thinnerShadow;
     align-items: center;
-    background-color: $grey-color;
+    background-color: $grey-color-lighter;
     border-radius: 16px;
     cursor: pointer;
     display: flex;

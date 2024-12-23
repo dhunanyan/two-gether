@@ -46,8 +46,8 @@ export const local = defineType({
           type: "object",
           fields: [
             defineField({
-              name: "userId",
-              title: "User ID",
+              name: "userEmail",
+              title: "User Email",
               type: "string",
             }),
             defineField({

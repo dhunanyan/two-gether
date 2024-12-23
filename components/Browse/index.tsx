@@ -9,7 +9,7 @@ export type BrowsePropsType = {
   data: Local[];
   query: string;
   title: string;
-  userId: string;
+  userEmail: string;
   description: string;
 };
 
@@ -17,7 +17,7 @@ export const Browse = ({
   data,
   query,
   title,
-  userId,
+  userEmail,
   description,
 }: BrowsePropsType) => (
   <section className="browse">
@@ -29,7 +29,7 @@ export const Browse = ({
       {data?.length > 0 ? (
         <ul className="browse__list">
           {data.map((post) => (
-            <LocalCard key={post?._id} {...post} userId={userId} />
+            <LocalCard key={post?._id} {...post} userEmail={userEmail} />
           ))}
         </ul>
       ) : (

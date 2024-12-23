@@ -1,5 +1,6 @@
 import ArrowLeft from "../public/svg/i_ArrowLeft.svg";
 import Beef from "../public/svg/i_Beef.svg";
+import BookMark from "../public/svg/i_BookMark.svg";
 import CirclePlus from "../public/svg/i_CirclePlus.svg";
 import Cup from "../public/svg/i_Cup.svg";
 import Filter from "../public/svg/i_Filter.svg";
@@ -20,6 +21,7 @@ import Times from "../public/svg/i_Times.svg";
 export const Icons = {
   ArrowLeft,
   Beef,
+  BookMark,
   CirclePlus,
   Cup,
   Filter,

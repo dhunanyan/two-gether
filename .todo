@@ -15,3 +15,7 @@ TODO: Create save button for cards -> copy paste the pathRating action logic but
 TODO: Add another method of sign-up
 
 TODO: Limit the sign-up users, so it's not that anyone can sign-up
+
+TODO: Implement NotFOund page
+
+TODO: Get rid of SASS warnings -> store mixins and vars in 1 file

@@ -8,22 +8,22 @@ import { RatingStars } from "../RatingStars";
 import "./LocalCard.scss";
 
 export type LocalCardPropsType = {
-  userId: string;
+  userEmail: string;
 } & Local;
 
 export const LocalCard = ({
   _id,
   image,
   title,
-  categories,
   rating,
-  userId,
+  userEmail,
+  categories,
 }: LocalCardPropsType) => {
   return (
     <li className="local-card">
       <div className="local-card__image">
         <img src={image} alt="placeholder" />
-        <RatingStars _id={_id} userId={userId} rating={rating} />
+        <RatingStars _id={_id} userEmail={userEmail} rating={rating} />
       </div>
 
       <h3 className="local-card__title">{title}</h3>
@@ -40,7 +40,7 @@ export const LocalCard = ({
         ))}
       </div>
 
-      <Link className="local-card__details" href={`/local/${_id}`}>
+      <Link className="local-card__details" href={`/browse/local/${_id}`}>
         Details
       </Link>
     </li>

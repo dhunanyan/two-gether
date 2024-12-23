@@ -21,20 +21,20 @@ export const RESTAURANTS_QUERY = defineQuery(`
 export const LOCAL_BY_ID_QUERY = defineQuery(`
 *[_type == "local" && _id == $id][0] {
   _id,
-  _createdAt,
   type,
   slug,
   image,
   title,
   rating,
-  description,
+  _createdAt,
   categories,
+  description,
   author -> {
     _id,
+    bio,
     name,
-    username,
     image,
-    bio
+    username
   }
 }`);
 

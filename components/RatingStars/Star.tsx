@@ -1,5 +1,10 @@
 import * as React from "react";
-import { Icons, Stars } from "@/lib";
+import {
+  Stars,
+  Icons,
+  getRatingIndexMessageBoxText,
+  reverseBackRatingIndex,
+} from "@/lib";
 
 import { Local } from "@/sanity/types";
 import { patchRating } from "@/lib/actions";
@@ -10,41 +15,7 @@ export type StarPropsType = {
   index: number;
   rating: Local["rating"];
   localId: string;
-  userId: string;
-};
-
-const parseReversedIndex = (index: number): number => {
-  switch (index) {
-    case 1:
-      return 5;
-    case 2:
-      return 4;
-    case 3:
-      return 3;
-    case 4:
-      return 2;
-    case 5:
-      return 1;
-    default:
-      return 0;
-  }
-};
-
-const getMessageBoxText = (index: number) => {
-  switch (index) {
-    case 1:
-      return "Very Bad";
-    case 2:
-      return "Bad";
-    case 3:
-      return "Meh";
-    case 4:
-      return "Good";
-    case 5:
-      return "Very Good!";
-    default:
-      return null;
-  }
+  userEmail: string;
 };
 
 export const Star = ({
@@ -53,7 +24,7 @@ export const Star = ({
   index,
   rating,
   localId,
-  userId,
+  userEmail,
 }: StarPropsType) => {
   return (
     <form
@@ -61,16 +32,16 @@ export const Star = ({
       action={async () => {
         "use server";
         await patchRating({
-          value: parseReversedIndex(index + 1),
+          value: reverseBackRatingIndex(index + 1),
           rating,
-          userId,
           localId,
+          userEmail,
         });
       }}
       className={`rating-stars__form rating-stars__form--${index + 1} rating-stars__form--${star}`}
     >
       <span className="rating-stars__message-box">
-        {getMessageBoxText(parseReversedIndex(index + 1))}
+        {getRatingIndexMessageBoxText(reverseBackRatingIndex(index + 1))}
       </span>
       <button
         dangerouslySetInnerHTML={{

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { parseRating, parseFromRatingToStars } from "@/lib";
+import { parseRatingToValue, parseRatingToStars } from "@/lib";
 import { Local } from "@/sanity/types";
 
 import { Star } from "./Star";
@@ -9,12 +9,16 @@ import "./RatingStars.scss";
 export type RatingStarsPropsType = {
   _id: Local["_id"];
   rating: Local["rating"];
-  userId?: string;
+  userEmail?: string;
 };
 
-export const RatingStars = ({ rating, userId, _id }: RatingStarsPropsType) => {
-  const value = parseRating(rating);
-  const stars = parseFromRatingToStars(value).reverse();
+export const RatingStars = ({
+  rating,
+  userEmail,
+  _id,
+}: RatingStarsPropsType) => {
+  const value = parseRatingToValue(rating);
+  const stars = parseRatingToStars(value).reverse();
 
   return (
     <div className="rating-stars">
@@ -27,11 +31,14 @@ export const RatingStars = ({ rating, userId, _id }: RatingStarsPropsType) => {
             total={stars.length}
             rating={rating}
             localId={_id}
-            userId={userId as string}
+            userEmail={userEmail as string}
           />
         ))}
       </div>
-      <span className="rating-stars__count">{value}</span>
+      <p className="rating-stars__value">
+        <span className="rating-stars__value-avg">{value}</span>
+        <span className="rating-stars__value-count">({rating?.length})</span>
+      </p>
     </div>
   );
 };

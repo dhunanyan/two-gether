@@ -1,0 +1,127 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.local-details {
+  background-color: $grey-color-lighter;
+
+  &__header {
+    @include thinShadow;
+    background-color: $grey-color-lighter;
+    height: 70px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+
+    &-title {
+      @include titleSmall;
+      color: $black-alt-color;
+      width: 100%;
+    }
+
+    &-button {
+      @include buttonSquarePrimary;
+      border-radius: 8px;
+      padding: 8px;
+    }
+  }
+
+  &__section {
+    &--hero {
+      margin: 70px 0 0;
+    }
+  }
+
+  &__container {
+    @include container;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+
+    &--header {
+      flex-direction: row;
+      padding-bottom: 15px !important;
+      padding-top: 15px !important;
+      height: calc(100% - 15px * 2);
+    }
+  }
+
+  &__image {
+    @include thinShadow;
+    border-radius: 16px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    img {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+  }
+
+  &__title {
+    @include title;
+    color: $black-alt-color;
+    margin: 16px 0 0;
+    text-align: left;
+  }
+
+  &__subtitle {
+    @include titleSmall;
+    color: $black-alt-color;
+    margin: 0 0 12px;
+    text-align: left;
+  }
+
+  &__description {
+    @include description;
+    margin: 0 0 12px;
+    text-align: left;
+  }
+
+  &__hr {
+    background-color: $grey-color-light;
+    height: 1px;
+    margin: 16px 0;
+    width: 100%;
+  }
+
+  &__author {
+    @include thinnerShadow;
+    align-items: center;
+    background-color: $black-alt-color;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    padding: 12px 16px;
+    transition: all 250ms $animation-bubble;
+    transform: translate(0, 0);
+
+    &-image {
+      @include thinShadow;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+    }
+
+    &-content {
+      color: $white-color;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    &-username {
+      font-weight: 600;
+    }
+
+    &:hover {
+      transform: translate(10px, 0);
+    }
+  }
+}

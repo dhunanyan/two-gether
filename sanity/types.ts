@@ -141,7 +141,7 @@ export type Local = {
     [internalGroqTypeReferenceTo]?: "author";
   };
   rating?: Array<{
-    userId?: string;
+    userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
@@ -186,7 +186,7 @@ export type CAFES_QUERYResult = Array<{
   title: string | null;
   categories: Array<string> | null;
   rating: Array<{
-    userId?: string;
+    userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
@@ -200,35 +200,35 @@ export type RESTAURANTS_QUERYResult = Array<{
   title: string | null;
   categories: Array<string> | null;
   rating: Array<{
-    userId?: string;
+    userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
   }> | null;
 }>;
 // Variable: LOCAL_BY_ID_QUERY
-// Query: *[_type == "local" && _id == $id][0] {  _id,  _createdAt,  type,  slug,  image,  title,  rating,  description,  categories,  author -> {    _id,    name,    username,    image,    bio  }}
+// Query: *[_type == "local" && _id == $id][0] {  _id,  type,  slug,  image,  title,  rating,  _createdAt,  categories,  description,  author -> {    _id,    bio,    name,    image,    username  }}
 export type LOCAL_BY_ID_QUERYResult = {
   _id: string;
-  _createdAt: string;
   type: string | null;
   slug: Slug | null;
   image: string | null;
   title: string | null;
   rating: Array<{
-    userId?: string;
+    userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
   }> | null;
-  description: string | null;
+  _createdAt: string;
   categories: Array<string> | null;
+  description: string | null;
   author: {
     _id: string;
-    name: string | null;
-    username: string | null;
-    image: string | null;
     bio: string | null;
+    name: string | null;
+    image: string | null;
+    username: string | null;
   } | null;
 } | null;
 // Variable: LOCAL_RATING_QUERY
@@ -236,7 +236,7 @@ export type LOCAL_BY_ID_QUERYResult = {
 export type LOCAL_RATING_QUERYResult = {
   _id: string;
   rating: Array<{
-    userId?: string;
+    userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
@@ -252,7 +252,7 @@ export type LOCALS_BY_AUTHOR_QUERYResult = Array<{
   image: string | null;
   title: string | null;
   rating: Array<{
-    userId?: string;
+    userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
@@ -296,7 +296,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "\n*[_type == \"local\" && type == \"cafe\" && ((defined(slug.current) && !defined($search)) || (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  image,\n  title,\n  categories,\n  rating\n}": CAFES_QUERYResult;
     "\n*[_type == \"local\" && type == \"restaurant\" && ((defined(slug.current) && !defined($search)) || (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  image,\n  title,\n  categories,\n  rating\n}": RESTAURANTS_QUERYResult;
-    "\n*[_type == \"local\" && _id == $id][0] {\n  _id,\n  _createdAt,\n  type,\n  slug,\n  image,\n  title,\n  rating,\n  description,\n  categories,\n  author -> {\n    _id,\n    name,\n    username,\n    image,\n    bio\n  }\n}": LOCAL_BY_ID_QUERYResult;
+    "\n*[_type == \"local\" && _id == $id][0] {\n  _id,\n  type,\n  slug,\n  image,\n  title,\n  rating,\n  _createdAt,\n  categories,\n  description,\n  author -> {\n    _id,\n    bio,\n    name,\n    image,\n    username\n  }\n}": LOCAL_BY_ID_QUERYResult;
     "\n*[_type == \"local\" && _id == $_id][0] {\n  _id,\n  rating\n}": LOCAL_RATING_QUERYResult;
     "\n  *[_type == \"local\" && author._ref == $id] | order(_createdAt desc) {\n   _id,\n  _createdAt,\n  type,\n  slug,\n  image,\n  title,\n  rating,\n  description,\n  categories,\n  author -> {\n    _id,\n    name,\n    username,\n    image,\n    bio\n  }\n}": LOCALS_BY_AUTHOR_QUERYResult;
     "\n*[_type == \"author\" && id == $id][0] {\n  _id,\n  id,\n  name,\n  username,\n  email,\n  image,\n  bio\n}": AUTHOR_BY_GITHUB_ID_QUERYResult;

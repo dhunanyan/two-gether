@@ -3,22 +3,21 @@
 
 .rating-stars {
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 0 0 0 20px;
   display: flex;
   justify-content: center;
-  padding: 8px;
 
   &__container {
     align-items: center;
     display: flex;
     gap: 2px;
-    overflow: hidden;
     width: 108px;
     transition: all 150ms ease-in-out;
   }
 
   &__form {
+    position: relative;
+
     &--1 {
       order: 5;
     }
@@ -85,7 +84,7 @@
 
       .rating-stars__message-box {
         opacity: 1;
-        transform: translate(-50%, 0);
+        transform: translate(0, 0);
       }
     }
 
@@ -99,20 +98,33 @@
     }
   }
 
-  &__count {
-    color: $white-color;
+  &__value {
+    align-items: center;
+    display: flex;
+    font-size: 16px;
     margin: 0 0 0 4px;
+    gap: 2px;
+
+    &-avg {
+      color: $black-color;
+      font-weight: 600;
+    }
+
+    &-count {
+      color: $grey-color-dark;
+    }
   }
 
   &__message-box {
+    @include thinShadow;
     background-color: $white-cream;
     border-radius: 4px;
-    bottom: -20px;
-    left: 50%;
+    left: -10px;
     opacity: 0;
     padding: 2px 3px;
     position: absolute;
-    transform: translate(-50%, -5px);
+    top: -28px;
+    transform: translate(0, -5px);
     transition:
       opacity 200ms ease-in-out,
       transform 450ms $animation-bubble;

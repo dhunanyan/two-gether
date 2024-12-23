@@ -4,17 +4,17 @@ import { Local } from "@/sanity/types";
 export type PatchRatingParamsType = {
   value: number;
   rating: Local["rating"];
-  userId: string;
   localId: string;
+  userEmail: string;
 };
 
 export const patchRating = async ({
   value,
   rating,
-  userId,
   localId,
+  userEmail,
 }: PatchRatingParamsType) => {
-  const ratingToSubmit = { userId, value };
+  const ratingToSubmit = { userEmail, value };
 
   if (!rating) {
     await writeClient
@@ -28,7 +28,7 @@ export const patchRating = async ({
   const currentState = [...rating];
 
   const ratingForCurrentUserExists = currentState.find(
-    (r) => r.userId === userId
+    (r) => r.userEmail === userEmail
   );
 
   if (!ratingForCurrentUserExists) {
@@ -44,7 +44,7 @@ export const patchRating = async ({
     .patch(localId)
     .set({
       rating: [
-        ...currentState.filter((r) => r.userId !== userId),
+        ...currentState.filter((r) => r.userEmail !== userEmail),
         ratingToSubmit,
       ],
     })

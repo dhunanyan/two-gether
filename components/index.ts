@@ -6,6 +6,7 @@ export { SearchForm } from "./SearchForm";
 export { Browse, type BrowsePropsType } from "./Browse";
 export { BrowseHeader, type BrowseHeaderPropsType } from "./BrowseHeader";
 export { LocalsForm } from "./LocalsForm";
-export { LocalCard, type LocalCardType } from "./LocalCard";
+export { LocalCard, type LocalCardPropsType } from "./LocalCard";
+export { LocalDetails, type LocalDetailsPropsType } from "./LocalDetails";
 export { UserLocals } from "./UserLocals";
 export { Banner } from "./Banner";

@@ -756,7 +756,7 @@
           "of": {
             "type": "object",
             "attributes": {
-              "userId": {
+              "userEmail": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "string"
