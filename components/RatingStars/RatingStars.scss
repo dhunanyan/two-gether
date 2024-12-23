@@ -82,6 +82,11 @@
           color: $yellow-color;
         }
       }
+
+      .rating-stars__message-box {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
     }
 
     &:nth-child(-n + 1):hover ~ .rating-stars__form button,
@@ -97,5 +102,20 @@
   &__count {
     color: $white-color;
     margin: 0 0 0 4px;
+  }
+
+  &__message-box {
+    background-color: $white-cream;
+    border-radius: 4px;
+    bottom: -20px;
+    left: 50%;
+    opacity: 0;
+    padding: 2px 3px;
+    position: absolute;
+    transform: translate(-50%, -5px);
+    transition:
+      opacity 200ms ease-in-out,
+      transform 450ms $animation-bubble;
+    width: max-content;
   }
 }

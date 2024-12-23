@@ -30,6 +30,23 @@ const parseReversedIndex = (index: number): number => {
   }
 };
 
+const getMessageBoxText = (index: number) => {
+  switch (index) {
+    case 1:
+      return "Very Bad";
+    case 2:
+      return "Bad";
+    case 3:
+      return "Meh";
+    case 4:
+      return "Good";
+    case 5:
+      return "Very Good!";
+    default:
+      return null;
+  }
+};
+
 export const Star = ({
   star,
   total,
@@ -52,6 +69,9 @@ export const Star = ({
       }}
       className={`rating-stars__form rating-stars__form--${index + 1} rating-stars__form--${star}`}
     >
+      <span className="rating-stars__message-box">
+        {getMessageBoxText(parseReversedIndex(index + 1))}
+      </span>
       <button
         dangerouslySetInnerHTML={{
           __html: star === Stars.HALF ? Icons.HalfStar : Icons.Star,
