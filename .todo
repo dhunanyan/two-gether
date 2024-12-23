@@ -10,4 +10,8 @@ TODO: Clean up the code and get rid of unused component etc...
 
 TODO: Refactor cafe and restaurants
 
-TODO: Create save button
+TODO: Create save button for cards -> copy paste the pathRating action logic but instead create array of userIDs for card and also array of objects (with a savedLocals name) which has 2 keys localId and type (cafe, restaurant) for Author. Also add an empty array in user register logic as default savedLocals property in DB.
+
+TODO: Add another method of sign-up
+
+TODO: Limit the sign-up users, so it's not that anyone can sign-up
