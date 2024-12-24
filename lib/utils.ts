@@ -1,5 +1,6 @@
 import { Local } from "@/sanity/types";
 import { Categories, LocalType, Stars } from "./constants";
+import { Icons } from "./icons";
 
 export function formatDate(date: string) {
   return new Date(date).toLocaleDateString("en-US", {
@@ -32,6 +33,8 @@ export function parseCategory(category: Categories): string {
       return "Smoke Inside";
     case Categories.WITH_GARDEN:
       return "With Garden";
+    case Categories.GREEN:
+      return "Green";
   }
 }
 
@@ -100,5 +103,29 @@ export function getLocalTypeDisplayText(type: LocalType) {
     case LocalType.CAFE:
       return "Cafe";
     default:
+  }
+}
+
+export function getLocalTypeRoute(type: LocalType) {
+  switch (type) {
+    case LocalType.CAFE:
+      return "cafes";
+    case LocalType.RESTAURANT:
+      return "restaurants";
+  }
+}
+
+export function getCategoryIcon(category: Categories) {
+  switch (category) {
+    case Categories.GREEN:
+      return Icons.Green;
+    case Categories.NEW_SCHOOL:
+      return Icons.Diamond;
+    case Categories.OLD_SCHOOL:
+      return Icons.Castle;
+    case Categories.SMOKE_INSIDE:
+      return Icons.Cigarette;
+    case Categories.WITH_GARDEN:
+      return Icons.Fence;
   }
 }

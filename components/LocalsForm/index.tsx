@@ -3,7 +3,15 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 
-import { convertToBase64, createLocal, Icons, Status, Error } from "@/lib";
+import {
+  convertToBase64,
+  createLocal,
+  Icons,
+  Status,
+  Error,
+  LocalType,
+  getLocalTypeRoute,
+} from "@/lib";
 import { OptionType, Select } from "../Select";
 
 import { z } from "zod";
@@ -32,16 +40,20 @@ const CATEGORIES_DATA: CategoryType[] = [
     id: "with-garden",
     title: "With Garden",
   },
+  {
+    id: "green",
+    title: "Green",
+  },
 ];
 
 export const OPTIONS_DATA: OptionType[] = [
   {
-    value: "cafe",
+    value: LocalType.CAFE,
     title: "Cafe",
   },
   {
-    value: "restaurants",
-    title: "Restaurants",
+    value: LocalType.RESTAURANT,
+    title: "Restaurant",
   },
 ];
 
@@ -87,7 +99,9 @@ export const LocalsForm = () => {
         //   description: "Your locals pitch has been created successfully!",
         // });
 
-        router.push(`/browse/local/${result._id}`);
+        router.push(
+          `/browse/${getLocalTypeRoute(type.value as LocalType)}/${result._id}`
+        );
       }
 
       return result;

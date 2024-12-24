@@ -114,6 +114,10 @@
     &--active {
       @include buttonPrimary;
     }
+
+    &:last-of-type {
+      width: 100%;
+    }
   }
 
   &__button {

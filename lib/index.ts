@@ -5,6 +5,8 @@ export {
   formatDate,
   parseCategory,
   convertToBase64,
+  getCategoryIcon,
+  getLocalTypeRoute,
   parseRatingToValue,
   parseRatingToStars,
   reverseBackRatingIndex,

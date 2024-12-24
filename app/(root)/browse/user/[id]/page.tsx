@@ -52,7 +52,7 @@ export default async function User({ params }: UserPropsType) {
             /*TODO: @COMPONENT
             fallback={<StartupCardSkeleton />}*/
             >
-              <UserLocals id={id} />
+              <UserLocals id={id} userEmail={session?.user?.email as string} />
             </React.Suspense>
           </ul>
         </div>

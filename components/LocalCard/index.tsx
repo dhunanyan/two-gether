@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { Categories, parseCategory } from "@/lib";
+import { Categories, getLocalTypeRoute, LocalType, parseCategory } from "@/lib";
 import { type Local } from "@/sanity/types";
 import { RatingStars } from "../RatingStars";
 
@@ -13,6 +13,7 @@ export type LocalCardPropsType = {
 
 export const LocalCard = ({
   _id,
+  type,
   image,
   title,
   rating,
@@ -40,7 +41,10 @@ export const LocalCard = ({
         ))}
       </div>
 
-      <Link className="local-card__details" href={`/browse/local/${_id}`}>
+      <Link
+        className="local-card__details"
+        href={`/browse/${getLocalTypeRoute(type as LocalType)}/${_id}`}
+      >
         Details
       </Link>
     </li>

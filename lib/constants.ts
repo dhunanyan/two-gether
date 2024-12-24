@@ -11,6 +11,7 @@ export enum Error {
 }
 
 export enum Categories {
+  GREEN = "green",
   SMOKE_INSIDE = "smoke-inside",
   WITH_GARDEN = "with-garden",
   OLD_SCHOOL = "old-school",

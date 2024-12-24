@@ -13,7 +13,15 @@ export const formSchema = z.object({
     .min(20, { message: "Description must contain at least 20 chars" })
     .max(500, { message: "Description must contain up to 500 chars" }),
   categories: z
-    .array(z.enum(["new-school", "old-school", "smoke-inside", "with-garden"]))
+    .array(
+      z.enum([
+        "new-school",
+        "old-school",
+        "smoke-inside",
+        "with-garden",
+        "green",
+      ])
+    )
     .min(1, { message: "At least one category must be selected" }),
   address: z
     .string()

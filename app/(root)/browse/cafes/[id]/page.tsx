@@ -1,10 +1,9 @@
 import * as React from "react";
 import { notFound } from "next/navigation";
 
-import { LocalType } from "@/lib/constants";
 import { LocalDetails } from "@/components";
 import { client, LOCAL_BY_ID_QUERY } from "@/sanity";
-import { Author, Local as LocalResponseType } from "@/sanity/types";
+import { Local as LocalResponseType } from "@/sanity/types";
 import { auth } from "@/auth";
 
 export const experimental_ppr = true;
