@@ -1,0 +1,53 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.popup {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: calc($navbar-z-index + 1);
+
+  &__container {
+    @include container;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__form {
+    @include thinShadow;
+    background-color: $white-color;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    padding: 20px;
+    width: calc(100% - 2 * 20px);
+    z-index: calc($navbar-z-index + 2);
+  }
+
+  &__input {
+    @include description;
+    color: $black-color;
+    border: 2px solid $primary-color;
+    border-radius: 8px;
+    padding: 12px 6px;
+    text-align: left;
+  }
+
+  &__label {
+    @include title;
+    color: $black-color;
+    text-align: left;
+  }
+
+  &__button {
+    @include thinShadow;
+    @include buttonPrimary;
+    transition: all 120ms ease-in-out;
+  }
+}

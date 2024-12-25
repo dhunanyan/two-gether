@@ -10,6 +10,17 @@ export function formatDate(date: string) {
   });
 }
 
+export function formatDateAndTime(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+}
+
 export function parseServerActionResponse<T>(response: T) {
   return JSON.parse(JSON.stringify(response));
 }
@@ -118,7 +129,7 @@ export function getLocalTypeRoute(type: LocalType) {
 export function getCategoryIcon(category: Categories) {
   switch (category) {
     case Categories.GREEN:
-      return Icons.Green;
+      return Icons.Tree;
     case Categories.NEW_SCHOOL:
       return Icons.Diamond;
     case Categories.OLD_SCHOOL:

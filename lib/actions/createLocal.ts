@@ -54,7 +54,7 @@ export const createLocal = async ({
         _ref: session?.id,
       },
       address,
-      phone,
+      phone: phone.replace(" ", "").replace("-", ""),
       categories,
       rating: [],
     };

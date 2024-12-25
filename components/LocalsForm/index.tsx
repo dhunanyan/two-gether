@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 
+import { OptionType, Select } from "../Select";
 import {
   convertToBase64,
   createLocal,
@@ -12,39 +13,11 @@ import {
   LocalType,
   getLocalTypeRoute,
 } from "@/lib";
-import { OptionType, Select } from "../Select";
+import { CategoryData } from "@/data";
 
 import { z } from "zod";
 
 import "./LocalsForm.scss";
-
-export type CategoryType = {
-  id: string;
-  title: string;
-};
-
-const CATEGORIES_DATA: CategoryType[] = [
-  {
-    id: "new-school",
-    title: "New School",
-  },
-  {
-    id: "old-school",
-    title: "Old School",
-  },
-  {
-    id: "smoke-inside",
-    title: "Smoke Inside",
-  },
-  {
-    id: "with-garden",
-    title: "With Garden",
-  },
-  {
-    id: "green",
-    title: "Green",
-  },
-];
 
 export const OPTIONS_DATA: OptionType[] = [
   {
@@ -191,7 +164,7 @@ export const LocalsForm = () => {
         </label>
 
         <div className="locals-form__categories">
-          {CATEGORIES_DATA.map(({ id, title }) => (
+          {CategoryData.map(({ id, title }) => (
             <button
               key={id}
               type="button"
@@ -266,10 +239,12 @@ export const LocalsForm = () => {
           Phone
         </label>
         <input
+          type="tel"
           id="phone"
           name="phone"
-          placeholder="e.g., +48 12 345 6789"
           autoComplete="off"
+          pattern="[+]{0,1}[0-9]{0,15}"
+          placeholder="e.g., +48 12 345 6789"
         />
         {errors.phone && <p className="locals-form__error">{errors.phone}</p>}
       </div>

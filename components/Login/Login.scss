@@ -16,6 +16,7 @@
   }
 
   &__go-back {
+    @include lightShadow;
     @include buttonSquarePrimaryReversed;
     position: relative;
     z-index: 1;
@@ -59,6 +60,7 @@
     width: 100%;
 
     button {
+      @include lightShadow;
       @include buttonPrimary;
       width: 100%;
     }

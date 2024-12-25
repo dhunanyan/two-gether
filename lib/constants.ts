@@ -28,3 +28,11 @@ export enum LocalType {
   CAFE = "cafe",
   RESTAURANT = "restaurant",
 }
+
+export enum Field {
+  IMAGE = "image",
+  TITLE = "title",
+  DESCRIPTION = "description",
+  CATEGORIES = "categories",
+  LOCAL_INFO = "local-info",
+}

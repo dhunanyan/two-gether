@@ -3,7 +3,7 @@ export { sanityFetch, SanityLive } from "./live";
 export {
   CAFES_QUERY,
   RESTAURANTS_QUERY,
-  LOCAL_BY_ID_QUERY,
+  LOCAL_DETAILS,
   LOCAL_RATING_QUERY,
   AUTHOR_BY_GITHUB_ID_QUERY,
   AUTHOR_BY_ID_QUERY,

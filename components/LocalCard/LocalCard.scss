@@ -80,6 +80,7 @@
   }
 
   &__category {
+    @include lightShadow;
     @include buttonPrimaryReversed;
     border-radius: 8px;
     font-size: 12px;
@@ -88,6 +89,7 @@
   }
 
   &__details {
+    @include lightShadow;
     @include buttonPrimary;
   }
 }

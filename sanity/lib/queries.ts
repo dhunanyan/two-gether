@@ -20,15 +20,18 @@ export const RESTAURANTS_QUERY = defineQuery(`
   rating
 }`);
 
-export const LOCAL_BY_ID_QUERY = defineQuery(`
+export const LOCAL_DETAILS = defineQuery(`
 *[_type == "local" && _id == $id][0] {
   _id,
   type,
   slug,
   image,
   title,
+  phone,
   rating,
+  address,
   _createdAt,
+  _updatedAt,
   categories,
   description,
   author -> {
@@ -36,6 +39,7 @@ export const LOCAL_BY_ID_QUERY = defineQuery(`
     bio,
     name,
     image,
+    email,
     username
   }
 }`);

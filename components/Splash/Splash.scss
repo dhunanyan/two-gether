@@ -49,6 +49,7 @@
   }
 
   &__button {
+    @include lightShadow;
     @include buttonPrimary;
     width: calc(100% - 20px * 2);
   }

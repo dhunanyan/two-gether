@@ -15,6 +15,7 @@ import Image from "../public/svg/i_Image.svg";
 import Logo from "../public/svg/i_Logo.svg";
 import Login from "../public/svg/i_Login.svg";
 import Logout from "../public/svg/i_Logout.svg";
+import Pen from "../public/svg/i_Pen.svg";
 import Restaurant from "../public/svg/i_Restaurant.svg";
 import Search from "../public/svg/i_Search.svg";
 import Send from "../public/svg/i_Send.svg";
@@ -41,6 +42,7 @@ export const Icons = {
   Logo,
   Login,
   Logout,
+  Pen,
   Restaurant,
   Search,
   Send,

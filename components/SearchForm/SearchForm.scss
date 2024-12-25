@@ -42,6 +42,7 @@
   }
 
   &__filter {
+    @include lightShadow;
     @include buttonSquarePrimary;
   }
 }
