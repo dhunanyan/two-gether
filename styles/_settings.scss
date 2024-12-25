@@ -1,4 +1,27 @@
-@import "./variables.scss";
+$black-color: #000000;
+$black-alt-color: #2a2a2a;
+$black-alt-2-color: #504f4f;
+$primary-color: #c67c4e;
+$red-color: #ed5151;
+$yellow-color: #fbbe21;
+$secondary-color: #d9f6f8;
+$white-cream: #fdfad9;
+$white-color: #ffffff;
+$grey-color-lighter: #ecf0f6;
+$grey-color-light: #e3e3e3;
+$grey-color-dark: #a2a2a2;
+$grey-color-darker: #75797f;
+
+$gradient-black: linear-gradient(-45deg, #111111 0%, #313131 100%);
+
+$font-work-sans: var(--font-work-sans), sans-serif;
+
+$animation-accordion: cubic-bezier(0.55, -0.19, 0.59, 0.95);
+$animation-bubble: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+$bottom-padding: 34px;
+$navbar-offset: 98px;
+$navbar-z-index: 9999;
 
 @mixin regularShadow {
   box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.47);
