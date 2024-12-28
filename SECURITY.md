@@ -1,6 +1,6 @@
 # Security Policy
 
-Thank you for helping keep our **`YC Directory`** project secure! We appreciate contributions and reports from the community. This document provides guidelines for reporting security issues to ensure they are resolved responsibly and promptly.
+Thank you for helping keep our **`TwoGether`** project secure! We appreciate contributions and reports from the community. This document provides guidelines for reporting security issues to ensure they are resolved responsibly and promptly.
 
 ## Supported Versions
 
@@ -26,7 +26,7 @@ If you find a security vulnerability, please report it by following these steps:
      - Steps to reproduce
      - Potential impact
      - Any recommended fix (if you have one)
-   - **Affected version(s)**: Specify the affected version(s) of the **`YC Directory`**.
+   - **Affected version(s)**: Specify the affected version(s) of the **`TwoGether`**.
 3. **PGP encryption** (optional): If you would like to encrypt your report, please use our PGP public key (include a link to a PGP key if available).
 
 We will respond within **48 hours** and provide an initial assessment of the vulnerability. We'll work with you on remediation and coordinate a public disclosure timeline if appropriate.
@@ -40,7 +40,7 @@ We regularly review and address security issues and release updates as needed. S
 
 ## Best Practices for Users
 
-To keep your usage of the **`YC Directory`** project secure:
+To keep your usage of the **`TwoGether`** project secure:
 
 - Always use the latest release.
 - Review our recommended [configuration and deployment practices](https://github.com/your-repo/docs/deployment).
