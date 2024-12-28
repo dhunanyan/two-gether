@@ -1,19 +1,27 @@
+"use server";
+
 import { writeClient } from "@/sanity";
+import { localInfoSchema } from "../validation";
 
 export type PatchLocalInfoParamsType = {
-  address: string;
-  phone: string;
+  formData: FormData;
   localId: string;
 };
 
 export const patchLocalInfo = async ({
-  address,
-  phone,
+  formData,
   localId,
 }: PatchLocalInfoParamsType) => {
+  const form = {
+    address: formData.get("address") as string,
+    phone: formData.get("phone") as string,
+  };
+
+  localInfoSchema.parseAsync(form);
+
   await writeClient
     .withConfig({ useCdn: false })
     .patch(localId)
-    .set({ address, phone })
+    .set({ address: form.address, phone: form.phone })
     .commit();
 };

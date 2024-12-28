@@ -1,17 +1,26 @@
+"use server";
+
 import { writeClient } from "@/sanity";
+import { descriptionSchema } from "../validation";
 
 export type PatchDescriptionParamsType = {
-  description: string;
+  formData: FormData;
   localId: string;
 };
 
 export const patchDescription = async ({
-  description,
+  formData,
   localId,
 }: PatchDescriptionParamsType) => {
+  const form = {
+    description: formData.get("description") as string,
+  };
+
+  descriptionSchema.parseAsync(form);
+
   await writeClient
     .withConfig({ useCdn: false })
     .patch(localId)
-    .set({ description })
+    .set({ description: form.description })
     .commit();
 };

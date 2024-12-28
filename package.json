@@ -1,17 +1,17 @@
 {
-  "name": "yc-directory",
+  "name": "two-gether",
   "version": "1.0.0",
   "description": "Application for couples to track, rate, and revisit their favorite date spots. Create a shared journey of memories while discovering new places to explore together!",
   "author": "dhunanyan",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dhunanyan/yc-directory.git"
+    "url": "git+https://github.com/dhunanyan/two-gether.git"
   },
   "bugs": {
-    "url": "https://github.com/dhunanyan/yc-directory/issues"
+    "url": "https://github.com/dhunanyan/two-gether/issues"
   },
-  "homepage": "https://github.com/dhunanyan/yc-directory#readme",
+  "homepage": "https://github.com/dhunanyan/two-gether#readme",
   "keywords": [
     "nextjs15",
     "react",

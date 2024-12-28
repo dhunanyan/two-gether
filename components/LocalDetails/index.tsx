@@ -193,11 +193,7 @@ export const LocalDetails = async ({
       </div>
 
       {typeof edit === "string" && (
-        <Popup
-          fieldToEdit={edit as Field}
-          localId={_id}
-          config={getPopupConfig()}
-        />
+        <Popup field={edit as Field} localId={_id} config={getPopupConfig()} />
       )}
     </div>
   );

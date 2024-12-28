@@ -28,24 +28,22 @@ export default async function Restaurants({
 
   return (
     <>
-      <>
-        <BrowseHeader
-          searchForm={{ query, placeholder: "Search Restaurants" }}
-          banner={{
-            imageURL: "/images/browse-header-restaurants-banner.png",
-            labels: ["Restaurants"],
-            title: "Discover your next favorite meal",
-          }}
-        />
-        <Browse
-          query={query}
-          title="All Restaurants"
-          description="No restaurants found"
-          data={data}
-          userEmail={session.user?.email as string}
-        />
-        <SanityLive />
-      </>
+      <BrowseHeader
+        searchForm={{ query, placeholder: "Search Restaurants" }}
+        banner={{
+          imageURL: "/images/browse-header-restaurants-banner.png",
+          labels: ["Restaurants"],
+          title: "Discover your next favorite meal",
+        }}
+      />
+      <Browse
+        query={query}
+        title="All Restaurants"
+        description="No restaurants found"
+        data={data}
+        userEmail={session.user?.email as string}
+      />
+      <SanityLive />
     </>
   );
 }

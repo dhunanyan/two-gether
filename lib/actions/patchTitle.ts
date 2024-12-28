@@ -1,14 +1,26 @@
+"use server";
+
 import { writeClient } from "@/sanity";
+import { titleSchema } from "../validation";
 
 export type PatchTitleParamsType = {
-  title: string;
   localId: string;
+  formData: FormData;
 };
 
-export const patchTitle = async ({ title, localId }: PatchTitleParamsType) => {
+export const patchTitle = async ({
+  localId,
+  formData,
+}: PatchTitleParamsType) => {
+  const form = {
+    title: formData.get("title") as string,
+  };
+
+  titleSchema.parseAsync(form);
+
   await writeClient
     .withConfig({ useCdn: false })
     .patch(localId)
-    .set({ title })
+    .set({ title: form.title })
     .commit();
 };
