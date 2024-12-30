@@ -1,3 +1,5 @@
+"use server";
+
 import { writeClient } from "@/sanity";
 import { Local } from "@/sanity/types";
 

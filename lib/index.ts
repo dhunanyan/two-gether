@@ -1,4 +1,10 @@
 export { createLocal } from "./actions/createLocal";
+export { patchDescription } from "./actions/patchDescription";
+export { patchLocalInfo } from "./actions/patchLocalInfo";
+export { patchTitle } from "./actions/patchTitle";
+export { patchRating } from "./actions/patchRating";
+export { patchImage } from "./actions/patchImage";
+export { patchCategories } from "./actions/patchCategories";
 export {
   isInt,
   isFloat,

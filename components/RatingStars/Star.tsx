@@ -7,7 +7,7 @@ import {
 } from "@/lib";
 
 import { Local } from "@/sanity/types";
-import { patchRating } from "@/lib/actions";
+import { patchRating } from "@/lib";
 
 export type StarPropsType = {
   star: Stars;
