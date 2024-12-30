@@ -89,6 +89,8 @@ export const UpdateLocalInfo = ({ config, localId }: LocalInfoPropsType) => {
       />
       {errors.phone && <p className="popup__error">{errors.phone}</p>}
 
+      <hr className="popup__hr" />
+
       <button className="popup__button">
         {isPending ? "Submitting..." : "Submit"}
       </button>

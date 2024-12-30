@@ -1,13 +1,17 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { Icons } from "@/lib";
+import { Icons, LocalType } from "@/lib";
 
-export const LocalDetailsHeader = () => (
+export type LocalDetailsHeaderPropsType = {
+  type: LocalType;
+};
+
+export const LocalDetailsHeader = ({ type }: LocalDetailsHeaderPropsType) => (
   <header className="local-details__header">
     <div className="local-details__header-container">
       <Link
-        href="/"
+        href={`/browse/${type}s`}
         className="local-details__header-button"
         dangerouslySetInnerHTML={{ __html: Icons.ArrowLeft }}
       />

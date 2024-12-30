@@ -134,6 +134,15 @@
       color: $black-alt-2-color;
       font-weight: 600;
     }
+
+    &-phone {
+      color: $blue-color;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   &__list {

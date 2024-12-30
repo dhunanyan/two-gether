@@ -63,7 +63,7 @@ export const LocalDetails = async ({
 
   return (
     <div className="local-details">
-      <LocalDetailsHeader />
+      <LocalDetailsHeader type={type as LocalType} />
 
       <div className="local-details__content">
         <div className="local-details__container">
@@ -155,7 +155,16 @@ export const LocalDetails = async ({
 
             <p className="local-details__description local-details__description--info">
               <span>Phone: </span>
-              {phone ? <Link href={`tel:${phone}`}>{phone}</Link> : "---"}
+              {phone ? (
+                <Link
+                  href={`tel:${phone}`}
+                  className="local-details__description-phone"
+                >
+                  {phone}
+                </Link>
+              ) : (
+                "---"
+              )}
             </p>
             <p className="local-details__description local-details__description--info">
               <span>Address: </span>

@@ -103,6 +103,9 @@ export const UpdateCategories = ({
       </div>
 
       {errors.categories && <p className="popup__error">{errors.categories}</p>}
+
+      <hr className="popup__hr" />
+
       <button className="popup__button">
         {isPending ? "Submitting..." : "Submit"}
       </button>

@@ -87,6 +87,9 @@ export const UpdateDescription = ({
       {errors.description && (
         <p className="popup__error">{errors.description}</p>
       )}
+
+      <hr className="popup__hr" />
+
       <button className="popup__button">
         {isPending ? "Submitting..." : "Submit"}
       </button>

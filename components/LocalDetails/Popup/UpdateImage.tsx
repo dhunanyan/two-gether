@@ -105,6 +105,9 @@ export const UpdateImage = ({ config, localId }: ImagePropsType) => {
         Add image
       </label>
       {errors.image && <p className="popup__error">{errors.image}</p>}
+
+      <hr className="popup__hr" />
+
       <button className="popup__button">
         {isPending ? "Submitting..." : "Submit"}
       </button>

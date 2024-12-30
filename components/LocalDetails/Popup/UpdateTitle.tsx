@@ -79,6 +79,9 @@ export const UpdateTitle = ({ config, localId }: TitlePropsType) => {
       />
 
       {errors.title && <p className="popup__error">{errors.title}</p>}
+
+      <hr className="popup__hr" />
+
       <button className="popup__button">
         {isPending ? "Submitting..." : "Submit"}
       </button>
