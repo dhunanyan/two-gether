@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-
-import { Error, Field, patchLocalInfo, Status } from "@/lib";
+import { usePathname, useRouter } from "next/navigation";
+import { Error, Field, Icons, patchLocalInfo, Status } from "@/lib";
 import { type PopupConfigsType } from ".";
 import { z } from "zod";
+import Link from "next/link";
 
 export type LocalInfoPropsType = {
   config: PopupConfigsType[Field.LOCAL_INFO];
@@ -13,6 +14,8 @@ export type LocalInfoPropsType = {
 
 export const UpdateLocalInfo = ({ config, localId }: LocalInfoPropsType) => {
   const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleFormSubmit = async (
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +28,7 @@ export const UpdateLocalInfo = ({ config, localId }: LocalInfoPropsType) => {
         localId,
       });
 
-      // router.push(pathname);
+      router.push(pathname);
     } catch (error) {
       console.log(error);
       if (error instanceof z.ZodError) {
@@ -56,11 +59,15 @@ export const UpdateLocalInfo = ({ config, localId }: LocalInfoPropsType) => {
 
   return (
     <form className="popup__form" action={formAction}>
-      <label htmlFor="phone" className="popup__label">
-        Local Info
+      <Link
+        href={pathname}
+        className="popup__close-button"
+        dangerouslySetInnerHTML={{ __html: Icons.Times }}
+      />
+      <label htmlFor="address" className="popup__label">
+        Address
       </label>
       <input
-        required
         id="address"
         name="address"
         autoComplete="off"
@@ -69,19 +76,21 @@ export const UpdateLocalInfo = ({ config, localId }: LocalInfoPropsType) => {
         defaultValue={(config as PopupConfigsType[Field.LOCAL_INFO]).address}
       />
       {errors.address && <p className="popup__error">{errors.address}</p>}
+      <label htmlFor="phone" className="popup__label">
+        Phone
+      </label>
       <input
-        required
         id="phone"
         name="phone"
         autoComplete="off"
         className="popup__input"
-        placeholder="e.g., Historic Café Rynek"
+        placeholder="e.g., +48 12 345 6789"
         defaultValue={(config as PopupConfigsType[Field.LOCAL_INFO]).phone}
       />
       {errors.phone && <p className="popup__error">{errors.phone}</p>}
 
       <button className="popup__button">
-        {isPending ? "Submit" : "Submitting..."}
+        {isPending ? "Submitting..." : "Submit"}
       </button>
     </form>
   );

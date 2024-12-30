@@ -2,10 +2,12 @@
 
 import * as React from "react";
 
-import { Error, Field, patchCategories, Status } from "@/lib";
+import { Error, Field, Icons, patchCategories, Status } from "@/lib";
 import { CategoryData } from "@/data";
 import { type PopupConfigsType } from ".";
 import { z } from "zod";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 export type UpdateCategoriesPropsType = {
   config: PopupConfigsType[Field.CATEGORIES];
@@ -20,6 +22,8 @@ export const UpdateCategories = ({
   const [categories, setCategories] = React.useState<string[]>(
     (config as PopupConfigsType[Field.CATEGORIES]).categories
   );
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleFormSubmit = async (
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,7 +35,7 @@ export const UpdateCategories = ({
         localId,
       });
 
-      // router.push(pathname);
+      router.push(pathname);
     } catch (error) {
       console.log(error);
       if (error instanceof z.ZodError) {
@@ -62,11 +66,17 @@ export const UpdateCategories = ({
 
   return (
     <form className="popup__form" action={formAction}>
-      <label htmlFor="categories" className="locals-form__label">
+      <Link
+        href={pathname}
+        className="popup__close-button"
+        dangerouslySetInnerHTML={{ __html: Icons.Times }}
+      />
+
+      <label htmlFor="categories" className="popup__label">
         Categories
       </label>
 
-      <div className="locals-form__categories">
+      <div className="popup__categories">
         {CategoryData.map(({ id, title }) => (
           <button
             key={id}
@@ -79,11 +89,11 @@ export const UpdateCategories = ({
               )
             }
             className={
-              "locals-form__category" +
+              "popup__category" +
               ((
                 config as PopupConfigsType[Field.CATEGORIES]
               ).categories.includes(id)
-                ? " locals-form__category--active"
+                ? " popup__category--active"
                 : "")
             }
           >
@@ -94,7 +104,7 @@ export const UpdateCategories = ({
 
       {errors.categories && <p className="popup__error">{errors.categories}</p>}
       <button className="popup__button">
-        {isPending ? "Submit" : "Submitting..."}
+        {isPending ? "Submitting..." : "Submit"}
       </button>
     </form>
   );

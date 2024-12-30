@@ -1,5 +1,8 @@
+"use client";
+
 import * as React from "react";
-import { Field, Icons } from "@/lib";
+import { usePathname, useRouter } from "next/navigation";
+import { Field } from "@/lib";
 
 import { UpdateTitle } from "./UpdateTitle";
 import { UpdateDescription } from "./UpdateDescription";
@@ -84,13 +87,16 @@ const renderPopupContent = ({
 };
 
 export const Popup = ({ localId, field, config }: PopupPropsType) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleClick = () => {
+    router.push(pathname);
+  };
+
   return (
     <div className="popup">
-      <button
-        className="popup__close-button"
-        dangerouslySetInnerHTML={{ __html: Icons.Times }}
-      />
-      <div className="popup__layer" />
+      <div onClick={handleClick} className="popup__layer" />
       <div className="popup__container">
         {renderPopupContent({ localId, field, config })}
       </div>

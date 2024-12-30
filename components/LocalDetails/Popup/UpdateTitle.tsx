@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
+import { usePathname, useRouter } from "next/navigation";
 
-import { Error, Field, patchTitle, Status } from "@/lib";
+import { Error, Field, Icons, patchTitle, Status } from "@/lib";
 import { type PopupConfigsType } from ".";
 import { z } from "zod";
+import Link from "next/link";
 
 export type TitlePropsType = {
   config: PopupConfigsType[Field.TITLE];
@@ -13,6 +15,8 @@ export type TitlePropsType = {
 
 export const UpdateTitle = ({ config, localId }: TitlePropsType) => {
   const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleFormSubmit = async (
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +29,7 @@ export const UpdateTitle = ({ config, localId }: TitlePropsType) => {
         localId,
       });
 
-      // router.push(pathname);
+      router.push(pathname);
     } catch (error) {
       console.log(error);
       if (error instanceof z.ZodError) {
@@ -56,6 +60,11 @@ export const UpdateTitle = ({ config, localId }: TitlePropsType) => {
 
   return (
     <form className="popup__form" action={formAction}>
+      <Link
+        href={pathname}
+        className="popup__close-button"
+        dangerouslySetInnerHTML={{ __html: Icons.Times }}
+      />
       <label htmlFor="title" className="popup__label">
         Title
       </label>
@@ -71,7 +80,7 @@ export const UpdateTitle = ({ config, localId }: TitlePropsType) => {
 
       {errors.title && <p className="popup__error">{errors.title}</p>}
       <button className="popup__button">
-        {isPending ? "Submit" : "Submitting..."}
+        {isPending ? "Submitting..." : "Submit"}
       </button>
     </form>
   );

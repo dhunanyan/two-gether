@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
+import { usePathname, useRouter } from "next/navigation";
 
-import { Error, Field, patchDescription, Status } from "@/lib";
+import { Error, Field, Icons, patchDescription, Status } from "@/lib";
 import { type PopupConfigsType } from ".";
 import { z } from "zod";
+import Link from "next/link";
 
 export type DescriptionPropsType = {
   config: PopupConfigsType[Field.DESCRIPTION];
@@ -16,6 +18,8 @@ export const UpdateDescription = ({
   localId,
 }: DescriptionPropsType) => {
   const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleFormSubmit = async (
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,7 +32,7 @@ export const UpdateDescription = ({
         localId,
       });
 
-      // router.push(pathname);
+      router.push(pathname);
     } catch (error) {
       console.log(error);
       if (error instanceof z.ZodError) {
@@ -59,26 +63,32 @@ export const UpdateDescription = ({
 
   return (
     <form className="popup__form" action={formAction}>
+      <Link
+        href={pathname}
+        className="popup__close-button"
+        dangerouslySetInnerHTML={{ __html: Icons.Times }}
+      />
+
       <label htmlFor="description" className="popup__label">
         Description
       </label>
-      <input
-        required
-        id="description"
-        name="description"
-        autoComplete="off"
-        className="popup__input"
-        placeholder="e.g., Historic Café Rynek"
-        defaultValue={
-          (config as PopupConfigsType[Field.DESCRIPTION]).description
-        }
-      />
-
+      <div className="popup__textarea-container">
+        <textarea
+          required
+          id="description"
+          name="description"
+          autoComplete="off"
+          placeholder="e.g., Historic Café Rynek"
+          defaultValue={
+            (config as PopupConfigsType[Field.DESCRIPTION]).description
+          }
+        />
+      </div>
       {errors.description && (
         <p className="popup__error">{errors.description}</p>
       )}
       <button className="popup__button">
-        {isPending ? "Submit" : "Submitting..."}
+        {isPending ? "Submitting..." : "Submit"}
       </button>
     </form>
   );

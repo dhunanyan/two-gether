@@ -35,8 +35,6 @@ export const LocalsForm = () => {
   const [image, setImage] = React.useState<string | null>(null);
   const [categories, setCategories] = React.useState<string[]>([]);
   const [type, setType] = React.useState<OptionType>(OPTIONS_DATA[0]);
-  // TODO: @HOOKS
-  // const { toast } = useToast();
   const router = useRouter();
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,12 +64,6 @@ export const LocalsForm = () => {
       });
 
       if (result.status === Status.SUCCESS) {
-        // TODO: @HOOKS
-        // toast({
-        //   title: "Success",
-        //   description: "Your locals pitch has been created successfully!",
-        // });
-
         router.push(
           `/browse/${getLocalTypeRoute(type.value as LocalType)}/${result._id}`
         );
@@ -85,26 +77,12 @@ export const LocalsForm = () => {
 
         setErrors(fieldErrors as unknown as Record<string, string>);
 
-        // TODO: @HOOKS
-        // toast({
-        //   title: "Error",
-        //   description: "Please check your inputs and try again",
-        //   variant: "destructive",
-        // });
-
         return {
           ...prevState,
           error: Error.VALIDATION,
           status: Status.ERROR,
         };
       }
-
-      // TODO: @HOOKS
-      // toast({
-      //   title: "Error",
-      //   description: "An unexpected error has occurred",
-      //   variant: "destructive",
-      // });
 
       return {
         ...prevState,

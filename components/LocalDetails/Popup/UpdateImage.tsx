@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-
+import { usePathname, useRouter } from "next/navigation";
 import {
   convertToBase64,
   Error,
@@ -12,6 +12,7 @@ import {
 } from "@/lib";
 import { type PopupConfigsType } from ".";
 import { z } from "zod";
+import Link from "next/link";
 
 export type ImagePropsType = {
   config: PopupConfigsType[Field.IMAGE];
@@ -21,6 +22,8 @@ export type ImagePropsType = {
 export const UpdateImage = ({ config, localId }: ImagePropsType) => {
   const [errors, setErrors] = React.useState<Record<string, string>>({});
   const [image, setImage] = React.useState<string | null>(config.image);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
@@ -42,7 +45,7 @@ export const UpdateImage = ({ config, localId }: ImagePropsType) => {
         localId,
       });
 
-      // router.push(pathname);
+      router.push(pathname);
     } catch (error) {
       console.log(error);
       if (error instanceof z.ZodError) {
@@ -73,13 +76,18 @@ export const UpdateImage = ({ config, localId }: ImagePropsType) => {
 
   return (
     <form className="popup__form" action={formAction}>
-      <label className="locals-form__label">Image</label>
-      <label htmlFor="image" className="locals-form__preview-image">
+      <Link
+        href={pathname}
+        className="popup__close-button"
+        dangerouslySetInnerHTML={{ __html: Icons.Times }}
+      />
+      <label className="popup__label">Image</label>
+      <label htmlFor="image" className="popup__preview-image">
         {image ? (
           <img src={image} alt="Cafe or Restaurant Preview" />
         ) : (
           <div
-            className="locals-form__preview-image-icon"
+            className="popup__preview-image-icon"
             dangerouslySetInnerHTML={{ __html: Icons.Image }}
           />
         )}
@@ -93,13 +101,10 @@ export const UpdateImage = ({ config, localId }: ImagePropsType) => {
         onChange={handleImageChange}
         required
       />
-      <label
-        htmlFor="image"
-        className="locals-form__label locals-form__label--image"
-      >
+      <label htmlFor="image" className="popup__label popup__label--image">
         Add image
       </label>
-      {errors.image && <p className="locals-form__error">{errors.image}</p>}
+      {errors.image && <p className="popup__error">{errors.image}</p>}
       <button className="popup__button">
         {isPending ? "Submitting..." : "Submit"}
       </button>
