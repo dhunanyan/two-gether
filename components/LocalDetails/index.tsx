@@ -127,7 +127,7 @@ export const LocalDetails = async ({
                       <span>{parseCategory(category as Categories)}</span>
                       <Link
                         className="local-details__list-link"
-                        href={`/?query=${category?.toLowerCase()}`}
+                        href={`/?search=${category?.toLowerCase()}`}
                         dangerouslySetInnerHTML={{
                           __html: getCategoryIcon(category as Categories),
                         }}

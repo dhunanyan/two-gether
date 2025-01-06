@@ -7,7 +7,10 @@ import { sanityFetch, SanityLive, CAFES_QUERY } from "@/sanity";
 import "./page.scss";
 
 export type CafesPropsType = {
-  searchParams: Promise<{ query: string }>;
+  searchParams: Promise<{
+    search: string;
+    categories: string;
+  }>;
 };
 
 export const experimental_ppr = true;
@@ -17,18 +20,20 @@ export default async function Cafes({ searchParams }: CafesPropsType) {
 
   if (!session) redirect("/");
 
-  const { query } = await searchParams;
-  const params = { search: query || null };
+  const { search, categories } = await searchParams;
 
   const { data } = (await sanityFetch({
     query: CAFES_QUERY,
-    params,
+    params: {
+      search: search || null,
+      categories: categories || null,
+    },
   })) as unknown as { data: LocalCardPropsType[] };
 
   return (
     <>
       <BrowseHeader
-        searchForm={{ query, placeholder: "Search Cafes" }}
+        searchForm={{ search, categories, placeholder: "Search Cafes" }}
         banner={{
           imageURL: "/images/browse-header-cafes-banner.png",
           labels: ["Cafes"],
@@ -37,7 +42,7 @@ export default async function Cafes({ searchParams }: CafesPropsType) {
       />
       <Browse
         data={data}
-        query={query}
+        search={search}
         title="All Cafes"
         userEmail={session.user?.email as string}
         description="No cafes found"

@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
   experimental: {
     ppr: "incremental",
     after: true,
+    serverActions: {
+      bodySizeLimit: "400mb",
+    },
   },
   devIndicators: {
     appIsrStatus: true,

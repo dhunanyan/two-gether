@@ -7,7 +7,7 @@ import "./Browse.scss";
 
 export type BrowsePropsType = {
   data: Local[];
-  query: string;
+  search: string;
   title: string;
   userEmail: string;
   description: string;
@@ -15,7 +15,7 @@ export type BrowsePropsType = {
 
 export const Browse = ({
   data,
-  query,
+  search,
   title,
   userEmail,
   description,
@@ -23,7 +23,7 @@ export const Browse = ({
   <section className="browse">
     <div className="browse__container">
       <h2 className="browse__title">
-        {query ? `Search result for "${query}"` : title}
+        {search ? `Search result for "${search}"` : title}
       </h2>
 
       {data?.length > 0 ? (

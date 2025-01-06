@@ -34,7 +34,7 @@ export const LocalCard = ({
           <Link
             key={i}
             className="local-card__category"
-            href={`/?query=${category?.toLowerCase()}`}
+            href={`/?search=${category?.toLowerCase()}`}
           >
             <p>{parseCategory(category as Categories)}</p>
           </Link>

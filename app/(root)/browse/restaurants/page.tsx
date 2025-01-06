@@ -6,7 +6,10 @@ import { redirect } from "next/navigation";
 import "./page.scss";
 
 export type RestaurantsPropsType = {
-  searchParams: Promise<{ query: string }>;
+  searchParams: Promise<{
+    search: string;
+    categories: string;
+  }>;
 };
 
 export const experimental_ppr = true;
@@ -18,18 +21,20 @@ export default async function Restaurants({
 
   if (!session) redirect("/");
 
-  const { query } = await searchParams;
-  const params = { search: query || null };
+  const { search, categories } = await searchParams;
 
   const { data } = (await sanityFetch({
     query: RESTAURANTS_QUERY,
-    params,
+    params: {
+      search: search || null,
+      categories: categories || null,
+    },
   })) as unknown as { data: LocalCardPropsType[] };
 
   return (
     <>
       <BrowseHeader
-        searchForm={{ query, placeholder: "Search Restaurants" }}
+        searchForm={{ search, categories, placeholder: "Search Restaurants" }}
         banner={{
           imageURL: "/images/browse-header-restaurants-banner.png",
           labels: ["Restaurants"],
@@ -37,7 +42,7 @@ export default async function Restaurants({
         }}
       />
       <Browse
-        query={query}
+        search={search}
         title="All Restaurants"
         description="No restaurants found"
         data={data}

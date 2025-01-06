@@ -1,6 +1,6 @@
 TODO: Add Card Details
 
-TODO: Add query submit using category
+TODO: Add search submit using category
 
 TODO: Handle Filter button click
 
@@ -19,5 +19,3 @@ TODO: Limit the sign-up users, so it's not that anyone can sign-up
 TODO: Implement NotFOund page
 
 TODO: Get rid of SASS warnings -> store mixins and vars in 1 file
-
-TODO: Add separate param for searching query (not "query" but another var name) for searching only categories

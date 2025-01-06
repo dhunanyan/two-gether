@@ -7,13 +7,21 @@ import { redirect, usePathname } from "next/navigation";
 import { Icons } from "@/lib";
 
 import "./SearchForm.scss";
+import { FilterDropdown } from "./FilterDropdown";
 
 export type SearchFormPropsType = {
-  query: string;
+  search: string;
+  categories: string;
   placeholder: string;
 };
 
-export const SearchForm = ({ query, placeholder }: SearchFormPropsType) => {
+export const SearchForm = ({
+  search,
+  // categories,
+  placeholder,
+}: SearchFormPropsType) => {
+  const [filter, setFilter] = React.useState<string[]>([]);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const pathname = usePathname();
   const ref = React.useRef<HTMLInputElement | null>(null);
 
@@ -31,13 +39,21 @@ export const SearchForm = ({ query, placeholder }: SearchFormPropsType) => {
     ref.current.focus();
   };
 
+  const onDropdownItemClick = (id: string) => {
+    setFilter((prev) =>
+      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
+    );
+  };
+
+  console.log(filter);
+
   return (
     <div className="search">
       <Form
-        action={pathname}
         scroll={false}
-        onClick={handleFormClick}
+        action={pathname}
         className="search__form"
+        onClick={handleFormClick}
       >
         <button
           type="reset"
@@ -47,8 +63,8 @@ export const SearchForm = ({ query, placeholder }: SearchFormPropsType) => {
         <input
           ref={ref}
           type="text"
-          name="query"
-          defaultValue={query}
+          name="search"
+          defaultValue={search}
           placeholder={placeholder}
           autoComplete="off"
           className="search__input"
@@ -59,10 +75,16 @@ export const SearchForm = ({ query, placeholder }: SearchFormPropsType) => {
         />
       </Form>
 
-      <button
-        dangerouslySetInnerHTML={{ __html: Icons.Filter }}
-        className="search__filter"
-      />
+      <div className="search__filter">
+        <button
+          className="search__filter-button"
+          onClick={() => setIsOpen((prev) => !prev)}
+          dangerouslySetInnerHTML={{ __html: Icons.Filter }}
+        />
+        {isOpen && (
+          <FilterDropdown onClick={onDropdownItemClick} filter={filter} />
+        )}
+      </div>
     </div>
   );
 };
