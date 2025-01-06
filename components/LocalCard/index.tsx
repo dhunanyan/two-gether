@@ -6,6 +6,7 @@ import { type Local } from "@/sanity/types";
 import { RatingStars } from "../RatingStars";
 
 import "./LocalCard.scss";
+import { IsVisited } from "../IsVisited";
 
 export type LocalCardPropsType = {
   userEmail: string;
@@ -24,6 +25,7 @@ export const LocalCard = ({
     <li className="local-card">
       <div className="local-card__image">
         <img src={image} alt="placeholder" />
+        <IsVisited />
         <RatingStars _id={_id} userEmail={userEmail} rating={rating} />
       </div>
 

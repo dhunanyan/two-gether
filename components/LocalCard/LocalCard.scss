@@ -70,6 +70,12 @@
         transform: translate(-50%, -5px);
       }
     }
+
+    .is-visited {
+      bottom: 8px;
+      position: absolute;
+      left: 8px;
+    }
   }
 
   &__categories {

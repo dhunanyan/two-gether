@@ -1,0 +1,35 @@
+@import "../../styles/settings";
+
+.is-visited {
+  align-items: center;
+  background-color: $grey-color-darker;
+  border-radius: 100px;
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+
+  &--active {
+    background-color: $green-color-light;
+  }
+
+  &__circle {
+    background-color: $grey-color-lighter;
+    border-radius: 50%;
+    height: 6px;
+    width: 6px;
+
+    &--active {
+      background-color: $green-color;
+    }
+  }
+
+  &__text {
+    @include titleSmall;
+    color: $grey-color-lighter;
+    font-size: 12px;
+
+    &--active {
+      color: $green-color;
+    }
+  }
+}
