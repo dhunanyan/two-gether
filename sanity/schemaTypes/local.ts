@@ -60,6 +60,30 @@ export const local = defineType({
       ],
     }),
     defineField({
+      name: "isVisited",
+      title: "Is Visited",
+      type: "array",
+      of: [
+        defineField({
+          name: "isVisitedObject",
+          title: "Is Visited Object",
+          type: "object",
+          fields: [
+            defineField({
+              name: "userEmail",
+              title: "User Email",
+              type: "string",
+            }),
+            defineField({
+              name: "value",
+              title: "Value",
+              type: "boolean",
+            }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "text",

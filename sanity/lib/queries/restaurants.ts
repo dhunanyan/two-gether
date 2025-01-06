@@ -8,8 +8,9 @@ export const RESTAURANTS_QUERY = defineQuery(`
   type,
   image,
   title,
+  rating,
+  isVisited,
   categories,
-  rating
 }`);
 
 // export const RESTAURANTS_QUERY = defineQuery(`

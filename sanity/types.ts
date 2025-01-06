@@ -146,6 +146,12 @@ export type Local = {
     _type: "ratingObject";
     _key: string;
   }>;
+  isVisited?: Array<{
+    userEmail?: string;
+    value?: boolean;
+    _type: "isVisitedObject";
+    _key: string;
+  }>;
   description?: string;
   address?: string;
   phone?: string;
@@ -228,24 +234,30 @@ export type LOCALS_BY_AUTHOR_QUERYResult = Array<{
 
 // Source: sanity/lib/queries/cafes.ts
 // Variable: CAFES_QUERY
-// Query: *[_type == "local" && type == "cafe" &&   ((defined(slug.current) && !defined($search)) ||   (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {  _id,  type,  image,  title,  categories,  rating}
+// Query: *[_type == "local" && type == "cafe" &&   ((defined(slug.current) && !defined($search)) ||   (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {  _id,  type,  image,  title,  rating,  isVisited,  categories,}
 export type CAFES_QUERYResult = Array<{
   _id: string;
   type: string | null;
   image: string | null;
   title: string | null;
-  categories: Array<string> | null;
   rating: Array<{
     userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
   }> | null;
+  isVisited: Array<{
+    userEmail?: string;
+    value?: boolean;
+    _type: "isVisitedObject";
+    _key: string;
+  }> | null;
+  categories: Array<string> | null;
 }>;
 
 // Source: sanity/lib/queries/local.ts
 // Variable: LOCAL_DETAILS
-// Query: *[_type == "local" && _id == $id][0] {  _id,  type,  slug,  image,  title,  phone,  rating,  address,  _createdAt,  _updatedAt,  categories,  description,  author -> {    _id,    bio,    name,    image,    email,    username  }}
+// Query: *[_type == "local" && _id == $id][0] {  _id,  type,  slug,  image,  title,  phone,  rating,  address,  isVisited,  _createdAt,  _updatedAt,  categories,  description,  author -> {    _id,    bio,    name,    image,    email,    username  }}
 export type LOCAL_DETAILSResult = {
   _id: string;
   type: string | null;
@@ -260,6 +272,12 @@ export type LOCAL_DETAILSResult = {
     _key: string;
   }> | null;
   address: string | null;
+  isVisited: Array<{
+    userEmail?: string;
+    value?: boolean;
+    _type: "isVisitedObject";
+    _key: string;
+  }> | null;
   _createdAt: string;
   _updatedAt: string;
   categories: Array<string> | null;
@@ -287,19 +305,25 @@ export type LOCAL_RATING_QUERYResult = {
 
 // Source: sanity/lib/queries/restaurants.ts
 // Variable: RESTAURANTS_QUERY
-// Query: *[_type == "local" && type == "restaurant" &&   ((defined(slug.current) && !defined($search)) ||   (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {  _id,  type,  image,  title,  categories,  rating}
+// Query: *[_type == "local" && type == "restaurant" &&   ((defined(slug.current) && !defined($search)) ||   (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {  _id,  type,  image,  title,  rating,  isVisited,  categories,}
 export type RESTAURANTS_QUERYResult = Array<{
   _id: string;
   type: string | null;
   image: string | null;
   title: string | null;
-  categories: Array<string> | null;
   rating: Array<{
     userEmail?: string;
     value?: number;
     _type: "ratingObject";
     _key: string;
   }> | null;
+  isVisited: Array<{
+    userEmail?: string;
+    value?: boolean;
+    _type: "isVisitedObject";
+    _key: string;
+  }> | null;
+  categories: Array<string> | null;
 }>;
 
 // Query TypeMap
@@ -309,9 +333,9 @@ declare module "@sanity/client" {
     "\n  *[_type == \"author\" && id == $id][0] {\n    _id,\n    id,\n    name,\n    username,\n    email,\n    image,\n    bio\n  }": AUTHOR_BY_GITHUB_ID_QUERYResult;
     "\n  *[_type == \"author\" && _id == $id][0] {\n    _id,\n    id,\n    name,\n    username,\n    email,\n    image,\n    bio\n  }": AUTHOR_BY_ID_QUERYResult;
     "\n    *[_type == \"local\" && author._ref == $id] | order(_createdAt desc) {\n     _id,\n    _createdAt,\n    type,\n    slug,\n    image,\n    title,\n    rating,\n    description,\n    categories,\n    author -> {\n      _id,\n      name,\n      username,\n      image,\n      bio\n    }\n  }": LOCALS_BY_AUTHOR_QUERYResult;
-    "\n*[_type == \"local\" && type == \"cafe\" && \n  ((defined(slug.current) && !defined($search)) || \n  (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  type,\n  image,\n  title,\n  categories,\n  rating\n}": CAFES_QUERYResult;
-    "\n*[_type == \"local\" && _id == $id][0] {\n  _id,\n  type,\n  slug,\n  image,\n  title,\n  phone,\n  rating,\n  address,\n  _createdAt,\n  _updatedAt,\n  categories,\n  description,\n  author -> {\n    _id,\n    bio,\n    name,\n    image,\n    email,\n    username\n  }\n}": LOCAL_DETAILSResult;
+    "\n*[_type == \"local\" && type == \"cafe\" && \n  ((defined(slug.current) && !defined($search)) || \n  (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  type,\n  image,\n  title,\n  rating,\n  isVisited,\n  categories,\n}": CAFES_QUERYResult;
+    "\n*[_type == \"local\" && _id == $id][0] {\n  _id,\n  type,\n  slug,\n  image,\n  title,\n  phone,\n  rating,\n  address,\n  isVisited,\n  _createdAt,\n  _updatedAt,\n  categories,\n  description,\n  author -> {\n    _id,\n    bio,\n    name,\n    image,\n    email,\n    username\n  }\n}": LOCAL_DETAILSResult;
     "\n*[_type == \"local\" && _id == $_id][0] {\n  _id,\n  rating\n}": LOCAL_RATING_QUERYResult;
-    "\n*[_type == \"local\" && type == \"restaurant\" && \n  ((defined(slug.current) && !defined($search)) || \n  (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  type,\n  image,\n  title,\n  categories,\n  rating\n}": RESTAURANTS_QUERYResult;
+    "\n*[_type == \"local\" && type == \"restaurant\" && \n  ((defined(slug.current) && !defined($search)) || \n  (title match $search || categories match $search || author->name match $search))] | order(_createdAt desc) {\n  _id,\n  type,\n  image,\n  title,\n  rating,\n  isVisited,\n  categories,\n}": RESTAURANTS_QUERYResult;
   }
 }

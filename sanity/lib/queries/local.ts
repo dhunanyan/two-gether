@@ -10,6 +10,7 @@ export const LOCAL_DETAILS = defineQuery(`
   phone,
   rating,
   address,
+  isVisited,
   _createdAt,
   _updatedAt,
   categories,

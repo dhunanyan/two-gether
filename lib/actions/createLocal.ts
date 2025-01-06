@@ -33,6 +33,7 @@ export const createLocal = async ({
     description: formData.get("description") as string,
     image: formData.get("image") as string,
     categories,
+    isVisited: false,
   };
 
   await formSchema.parseAsync(formValues);

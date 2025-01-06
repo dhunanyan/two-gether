@@ -18,14 +18,17 @@ export const LocalCard = ({
   image,
   title,
   rating,
+  isVisited,
   userEmail,
   categories,
 }: LocalCardPropsType) => {
+  console.log("isVisited", isVisited);
+
   return (
     <li className="local-card">
       <div className="local-card__image">
         <img src={image} alt="placeholder" />
-        <IsVisited />
+        <IsVisited isVisited={false} />
         <RatingStars _id={_id} userEmail={userEmail} rating={rating} />
       </div>
 

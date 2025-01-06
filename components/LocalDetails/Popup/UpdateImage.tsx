@@ -28,8 +28,8 @@ export const UpdateImage = ({ config, localId }: ImagePropsType) => {
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       setImage(await convertToBase64(e.target.files?.[0] as Blob));
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
       setImage(null);
     }
   };

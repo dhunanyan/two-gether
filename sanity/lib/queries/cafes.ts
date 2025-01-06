@@ -8,8 +8,9 @@ export const CAFES_QUERY = defineQuery(`
   type,
   image,
   title,
+  rating,
+  isVisited,
   categories,
-  rating
 }`);
 
 // export const CAFES_QUERY = defineQuery(`

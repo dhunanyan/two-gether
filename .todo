@@ -19,3 +19,5 @@ TODO: Limit the sign-up users, so it's not that anyone can sign-up
 TODO: Implement NotFOund page
 
 TODO: Get rid of SASS warnings -> store mixins and vars in 1 file
+
+TODO: isVisited patch logic (do it like the rating logic)
