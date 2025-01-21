@@ -45,8 +45,6 @@ export const SearchForm = ({
     );
   };
 
-  console.log(filter);
-
   return (
     <div className="search">
       <Form

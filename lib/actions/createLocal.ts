@@ -57,7 +57,18 @@ export const createLocal = async ({
       address,
       phone: phone.replace(" ", "").replace("-", ""),
       categories,
-      rating: [],
+      rating: [
+        {
+          userEmail: session?.user?.email,
+          value: 0,
+        },
+      ],
+      isVisited: [
+        {
+          userEmail: session?.user?.email,
+          value: false,
+        },
+      ],
     };
 
     const result = await writeClient.create({ _type: "local", ...local });

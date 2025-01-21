@@ -3,6 +3,7 @@ export { patchDescription } from "./actions/patchDescription";
 export { patchLocalInfo } from "./actions/patchLocalInfo";
 export { patchTitle } from "./actions/patchTitle";
 export { patchRating } from "./actions/patchRating";
+export { patchIsVisited } from "./actions/patchIsVisited";
 export { patchImage } from "./actions/patchImage";
 export { patchCategories } from "./actions/patchCategories";
 export {

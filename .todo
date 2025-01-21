@@ -20,6 +20,8 @@ TODO: Implement NotFOund page
 
 TODO: Get rid of SASS warnings -> store mixins and vars in 1 file
 
-TODO: isVisited patch logic (do it like the rating logic)
-
 TODO: Change i_Check icon (currently its imported from a different source then sanity/icons)
+
+TODO: Change logic of rating and isVisited to use instead of "userEmail" a unique user id (which should be also generated on registration process and this should be done as a first step).
+
+TODO: Add loading logic and indicator for rating and isVisited patch

@@ -4,40 +4,40 @@ import { writeClient } from "@/sanity";
 import { Local } from "@/sanity/types";
 
 export type PatchisVisitedParamsType = {
-  value: number;
+  value: boolean;
   isVisited: Local["isVisited"];
   localId: string;
   userEmail: string;
 };
 
-export const patchisVisited = async ({
+export const patchIsVisited = async ({
   value,
   isVisited,
   localId,
   userEmail,
 }: PatchisVisitedParamsType) => {
-  const ratingToSubmit = { userEmail, value };
+  const isVisitedToSubmit = { userEmail, value };
 
   if (!isVisited) {
     await writeClient
       .withConfig({ useCdn: false })
       .patch(localId)
-      .set({ rating: [ratingToSubmit] })
+      .set({ isVisited: [isVisitedToSubmit] })
       .commit();
     return;
   }
 
   const currentState = [...isVisited];
 
-  const ratingForCurrentUserExists = currentState.find(
+  const isVisitedForCurrentUserExists = currentState.find(
     (r) => r.userEmail === userEmail
   );
 
-  if (!ratingForCurrentUserExists) {
+  if (!isVisitedForCurrentUserExists) {
     await writeClient
       .withConfig({ useCdn: false })
       .patch(localId)
-      .set({ rating: [...currentState, ratingToSubmit] })
+      .set({ isVisited: [...currentState, isVisitedToSubmit] })
       .commit();
     return;
   }
@@ -45,9 +45,9 @@ export const patchisVisited = async ({
   await writeClient
     .patch(localId)
     .set({
-      rating: [
+      isVisited: [
         ...currentState.filter((r) => r.userEmail !== userEmail),
-        ratingToSubmit,
+        isVisitedToSubmit,
       ],
     })
     .commit();

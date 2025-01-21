@@ -21,40 +21,36 @@ export const LocalCard = ({
   isVisited,
   userEmail,
   categories,
-}: LocalCardPropsType) => {
-  console.log("isVisited", isVisited);
+}: LocalCardPropsType) => (
+  <li className="local-card">
+    <div className="local-card__image">
+      <img src={image} alt="placeholder" />
+      <IsVisited isVisited={isVisited} localId={_id} userEmail={userEmail} />
+      <RatingStars _id={_id} userEmail={userEmail} rating={rating} />
+    </div>
 
-  return (
-    <li className="local-card">
-      <div className="local-card__image">
-        <img src={image} alt="placeholder" />
-        <IsVisited isVisited={false} />
-        <RatingStars _id={_id} userEmail={userEmail} rating={rating} />
-      </div>
+    <h3 className="local-card__title">{title}</h3>
 
-      <h3 className="local-card__title">{title}</h3>
+    <div className="local-card__categories">
+      {categories?.map((category, i) => (
+        <Link
+          key={i}
+          className="local-card__category"
+          href={`/?search=${category?.toLowerCase()}`}
+        >
+          <p>{parseCategory(category as Categories)}</p>
+        </Link>
+      ))}
+    </div>
 
-      <div className="local-card__categories">
-        {categories?.map((category, i) => (
-          <Link
-            key={i}
-            className="local-card__category"
-            href={`/?search=${category?.toLowerCase()}`}
-          >
-            <p>{parseCategory(category as Categories)}</p>
-          </Link>
-        ))}
-      </div>
-
-      <Link
-        className="local-card__details"
-        href={`/browse/${getLocalTypeRoute(type as LocalType)}/${_id}`}
-      >
-        Details
-      </Link>
-    </li>
-  );
-};
+    <Link
+      className="local-card__details"
+      href={`/browse/${getLocalTypeRoute(type as LocalType)}/${_id}`}
+    >
+      Details
+    </Link>
+  </li>
+);
 
 export const LocalCardSkeleton = () => (
   <>

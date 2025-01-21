@@ -2,19 +2,16 @@
 
 @keyframes showButton {
   0% {
-    margin: 0 0 0 2px;
     opacity: 0;
     padding: 0px;
     width: 0;
   }
   50% {
-    margin: 0 0 0 4px;
     opacity: 0;
     padding: 2px;
     width: 16px;
   }
   100% {
-    margin: 0 0 0 4px;
     opacity: 1;
     padding: 2px;
     width: 16px;
@@ -23,19 +20,16 @@
 
 @keyframes hideButton {
   0% {
-    margin: 0 0 0 4px;
     opacity: 1;
     padding: 2px;
     width: 16px;
   }
   20% {
-    margin: 0 0 0 4px;
     opacity: 0;
     padding: 2px;
     width: 16px;
   }
   100% {
-    margin: 0 0 0 2px;
     opacity: 0;
     padding: 0px;
     width: 0;
@@ -43,14 +37,14 @@
 }
 
 .is-visited {
-  @include lightShadow;
+  @include regularShadow;
   align-items: center;
   background-color: $grey-color-dark;
   border-radius: 150px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  padding: 2px 6px;
+  padding: 2px 4px 2px 6px;
 
   &--active {
     background-color: $green-color-light;
@@ -89,6 +83,7 @@
   }
 
   &__button {
+    @include regularShadow;
     align-items: center;
     animation: hideButton 520ms $animation-bubble forwards;
     background-color: $green-color-light;
@@ -100,6 +95,9 @@
     margin: 0 0 0 4px;
     opacity: 0;
     padding: 2px;
+    transition:
+      background-color 120ms ease-in-out,
+      color 120ms ease-in-out;
     width: 0px;
 
     &:hover {

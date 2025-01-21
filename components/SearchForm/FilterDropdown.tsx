@@ -14,8 +14,6 @@ export const FilterDropdown = ({
     CategoryData.map((category) => filter.includes(category.id))
   );
 
-  console.log(activeCategories);
-
   return (
     <ul className="filter-dropdown">
       {CategoryData.map(({ id, title }, i) => (
