@@ -25,3 +25,16 @@ TODO: Change i_Check icon (currently its imported from a different source then s
 TODO: Change logic of rating and isVisited to use instead of "userEmail" a unique user id (which should be also generated on registration process and this should be done as a first step).
 
 TODO: Add loading logic and indicator for rating and isVisited patch
+
+TODO: Investigate if in createLocal.ts the reference is right:
+
+```ts
+  author: {
+    _type: "reference",
+    _ref: session?.id, //Maybe it should be session?.user?.id
+  },
+```
+
+TODO: Create a big list of locals and submit them trough a forEach loop
+
+TODO: Add husky
