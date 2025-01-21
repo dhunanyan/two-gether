@@ -2,6 +2,7 @@ import ArrowLeft from "../public/svg/i_ArrowLeft.svg";
 import Beef from "../public/svg/i_Beef.svg";
 import BookMark from "../public/svg/i_BookMark.svg";
 import Castle from "../public/svg/i_Castle.svg";
+import Check from "../public/svg/i_Check.svg";
 import Cigarette from "../public/svg/i_Cigarette.svg";
 import CirclePlus from "../public/svg/i_CirclePlus.svg";
 import Cup from "../public/svg/i_Cup.svg";
@@ -29,6 +30,7 @@ export const Icons = {
   Beef,
   BookMark,
   Castle,
+  Check,
   Cigarette,
   CirclePlus,
   Cup,

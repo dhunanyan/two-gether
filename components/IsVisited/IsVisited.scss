@@ -1,38 +1,125 @@
 @import "../../styles/settings";
 
+@keyframes showButton {
+  0% {
+    margin: 0 0 0 2px;
+    opacity: 0;
+    padding: 0px;
+    width: 0;
+  }
+  50% {
+    margin: 0 0 0 4px;
+    opacity: 0;
+    padding: 2px;
+    width: 16px;
+  }
+  100% {
+    margin: 0 0 0 4px;
+    opacity: 1;
+    padding: 2px;
+    width: 16px;
+  }
+}
+
+@keyframes hideButton {
+  0% {
+    margin: 0 0 0 4px;
+    opacity: 1;
+    padding: 2px;
+    width: 16px;
+  }
+  20% {
+    margin: 0 0 0 4px;
+    opacity: 0;
+    padding: 2px;
+    width: 16px;
+  }
+  100% {
+    margin: 0 0 0 2px;
+    opacity: 0;
+    padding: 0px;
+    width: 0;
+  }
+}
+
 .is-visited {
+  @include lightShadow;
+  align-items: center;
+  background-color: $grey-color-dark;
+  border-radius: 150px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 6px;
+
   &--active {
     background-color: $green-color-light;
   }
 
-  &__button {
-    @include thinShadow;
-    align-items: center;
-    background-color: $grey-color-darker;
-    border-radius: 100px;
-    display: flex;
-    gap: 4px;
-    padding: 4px 8px;
-  }
-
-  &__circle {
-    background-color: $grey-color-lighter;
-    border-radius: 50%;
-    height: 6px;
-    width: 6px;
-
-    &--active {
-      background-color: $green-color;
+  &:hover {
+    button {
+      animation: showButton 400ms $animation-bubble forwards;
     }
   }
 
   &__text {
     @include titleSmall;
+    align-items: center;
     color: $grey-color-lighter;
+    display: flex;
     font-size: 12px;
+    justify-content: center;
+
+    span {
+      background-color: $grey-color-lighter;
+      border-radius: 50%;
+      display: block;
+      height: 6px;
+      margin: 0 6px 0 0;
+      width: 6px;
+    }
 
     &--active {
       color: $green-color;
+
+      span {
+        background-color: $green-color;
+      }
+    }
+  }
+
+  &__button {
+    align-items: center;
+    animation: hideButton 520ms $animation-bubble forwards;
+    background-color: $green-color-light;
+    border-radius: 50%;
+    color: $green-color;
+    display: flex;
+    justify-content: center;
+    height: 16px;
+    margin: 0 0 0 4px;
+    opacity: 0;
+    padding: 2px;
+    width: 0px;
+
+    &:hover {
+      background-color: $green-color-light-hover;
+      color: $green-color-hover;
+    }
+
+    &--active {
+      background-color: $red-color;
+      color: $white-color;
+
+      &:hover {
+        background-color: $red-color-hover;
+        color: $white-color;
+      }
+    }
+
+    svg {
+      height: 100%;
+      width: 100%;
     }
   }
 }
