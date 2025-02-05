@@ -34,6 +34,19 @@ export async function convertToBase64(image: Blob): Promise<string> {
   });
 }
 
+export async function convertToBase64FromLocalFilePath(
+  imageURL: string
+): Promise<string | null> {
+  try {
+    const response = await fetch(`http://localhost:3000/${imageURL}`);
+    const arrayBuffer = await response.arrayBuffer();
+    return Buffer.from(arrayBuffer).toString("base64");
+  } catch (error) {
+    console.log("Error converting image to base64:", error);
+    return null;
+  }
+}
+
 export function parseCategory(category: Categories): string {
   switch (category) {
     case Categories.NEW_SCHOOL:

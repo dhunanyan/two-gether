@@ -5,6 +5,7 @@ import { BrowseHeader, Browse, type LocalCardPropsType } from "@/components";
 import { sanityFetch, SanityLive, CAFES_QUERY } from "@/sanity";
 
 import "./page.scss";
+import { convertToBase64FromLocalFilePath } from "@/lib/utils";
 
 export type CafesPropsType = {
   searchParams: Promise<{

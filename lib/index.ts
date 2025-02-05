@@ -21,6 +21,7 @@ export {
   getLocalTypeDisplayText,
   parseServerActionResponse,
   getRatingIndexMessageBoxText,
+  convertToBase64FromLocalFilePath,
 } from "./utils";
 export { Icons } from "./icons";
 export {
