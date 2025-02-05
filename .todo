@@ -35,6 +35,4 @@ TODO: Investigate if in createLocal.ts the reference is right:
   },
 ```
 
-TODO: Create a big list of locals and submit them trough a forEach loop
-
 TODO: Add husky

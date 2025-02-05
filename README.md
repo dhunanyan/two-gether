@@ -608,3 +608,9 @@ export const PLAYLIST_BY_SLUG_QUERY = defineQuery(`
 ```
 
 </details>
+
+---
+
+## CHECK THIS FILE TO UNDERSTAND HOW TO ADD LOTS OF CAFES/RESTAURANTS AT ONCE:
+
+`lib\actions\createLocalsUtil.ts`

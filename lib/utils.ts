@@ -40,7 +40,8 @@ export async function convertToBase64FromLocalFilePath(
   try {
     const response = await fetch(`http://localhost:3000/${imageURL}`);
     const arrayBuffer = await response.arrayBuffer();
-    return Buffer.from(arrayBuffer).toString("base64");
+    const extension = imageURL.split(".")[imageURL.split(".").length - 1];
+    return `data:image/${extension};base64,${Buffer.from(arrayBuffer).toString("base64")}`;
   } catch (error) {
     console.log("Error converting image to base64:", error);
     return null;
